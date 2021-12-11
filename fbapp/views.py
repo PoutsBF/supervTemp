@@ -4,7 +4,7 @@ import logging as lg
 app = Flask(__name__)
 app.config.from_object('config')
 
-from .utils import find_content
+#from .utils import find_content
 
 @app.route('/')
 @app.route('/index/')
