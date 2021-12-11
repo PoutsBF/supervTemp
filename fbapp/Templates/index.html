@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <!-- Header -->
+  <header>
+    <div class="container" id="maincontent" tabindex="-1">
+      <div class="row">
+          <div class="col-lg-6 col-lg-offset-3">
+            {% include 'card.html' %}
+          </div>
+      </div>
+      <div class="row">
+        <div class="intro-text">
+          <h1 class="name">Prêt-e à savoir qui tu es vraiment ?</h1>
+          <hr class="star-light">
+        </div>
+        <div class="col-lg-8 col-lg-offset-2 text-center">
+          <p>
+            Connecte-toi à Facebook afin de connaître les résultats !
+          </p>
+          <p style="margin-top: 20px;">
+            <div class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="true" data-use-continue-as="true" onlogin='checkLoginState()'></div>
+          </p>
+        </div>
+      </div>
+    </div>
+  </header>
+  
+{% endblock %}
