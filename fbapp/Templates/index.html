@@ -5,18 +5,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Bootstrap 4, from LayoutIt!</title>
+    <title>Température maison PoutsFam</title>
 
-    <meta name="description" content="Source code generated using layoutit.com">
-    <meta name="author" content="LayoutIt!">
+    <meta name="description" content="affichage des informations des thermomètres Bluetooth">
+    <meta name="author" content="Stéphane Lepoutère">
 
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+    <!-- Bootstrap Core CSS -->
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
 
-  </head>
+    <!-- Theme CSS -->
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+
+</head>
   <body>
 
     <div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<h3>
+				Température Pout's Fam House !
+			</h3>
+		</div>
+	</div>
 	<div class="row">
 		<div class="col-md-1">
 			<ul class="nav nav-pills">
@@ -289,8 +299,13 @@
 	</div>
 </div>
 
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/scripts.js"></script>
-  </body>
+    <!-- Plugin JavaScript -->
+    <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+
+	<!-- Bootstrap Core JavaScript -->
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+
+    <!-- Theme JavaScript -->
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+</body>
 </html>
