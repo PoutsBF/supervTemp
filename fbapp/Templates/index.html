@@ -1,29 +1,296 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-{% block content %}
-  <!-- Header -->
-  <header>
-    <div class="container" id="maincontent" tabindex="-1">
-      <div class="row">
-          <div class="col-lg-6 col-lg-offset-3">
-            {% include 'card.html' %}
-          </div>
-      </div>
-      <div class="row">
-        <div class="intro-text">
-          <h1 class="name">Prêt-e à savoir qui tu es vraiment ?</h1>
-          <hr class="star-light">
-        </div>
-        <div class="col-lg-8 col-lg-offset-2 text-center">
-          <p>
-            Connecte-toi à Facebook afin de connaître les résultats !
-          </p>
-          <p style="margin-top: 20px;">
-            <div class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="true" data-use-continue-as="true" onlogin='checkLoginState()'></div>
-          </p>
-        </div>
-      </div>
-    </div>
-  </header>
-  
-{% endblock %}
+    <title>Bootstrap 4, from LayoutIt!</title>
+
+    <meta name="description" content="Source code generated using layoutit.com">
+    <meta name="author" content="LayoutIt!">
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+  </head>
+  <body>
+
+    <div class="container-fluid">
+	<div class="row">
+		<div class="col-md-1">
+			<ul class="nav nav-pills">
+				<li class="nav-item">
+					 <a class="nav-link btn btn-primary" href="#">Home <span class="badge badge-light">42</span></a>
+				</li>
+				<li class="nav-item">
+					 <a class="nav-link" href="#">More <span class="badge badge-secondary">16</span></a>
+				</li>
+			</ul>
+		</div>
+		<div class="col-md-1">
+			<ul class="nav nav-pills">
+				<li class="nav-item">
+					 <a class="nav-link btn btn-primary" href="#">Home <span class="badge badge-light">42</span></a>
+				</li>
+				<li class="nav-item">
+					 <a class="nav-link" href="#">More <span class="badge badge-secondary">16</span></a>
+				</li>
+			</ul>
+		</div>
+		<div class="col-md-1">
+			<ul class="nav nav-pills">
+				<li class="nav-item">
+					 <a class="nav-link btn btn-primary" href="#">Home <span class="badge badge-light">42</span></a>
+				</li>
+				<li class="nav-item">
+					 <a class="nav-link" href="#">More <span class="badge badge-secondary">16</span></a>
+				</li>
+			</ul>
+		</div>
+		<div class="col-md-1">
+			<ul class="nav nav-pills">
+				<li class="nav-item">
+					 <a class="nav-link btn btn-primary" href="#">Home <span class="badge badge-light">42</span></a>
+				</li>
+				<li class="nav-item">
+					 <a class="nav-link" href="#">More <span class="badge badge-secondary">16</span></a>
+				</li>
+			</ul>
+		</div>
+		<div class="col-md-1">
+			<ul class="nav nav-pills">
+				<li class="nav-item">
+					 <a class="nav-link btn btn-primary" href="#">Home <span class="badge badge-light">42</span></a>
+				</li>
+				<li class="nav-item">
+					 <a class="nav-link" href="#">More <span class="badge badge-secondary">16</span></a>
+				</li>
+			</ul>
+		</div>
+		<div class="col-md-1">
+			<ul class="nav nav-pills">
+				<li class="nav-item">
+					 <a class="nav-link btn btn-primary" href="#">Home <span class="badge badge-light">42</span></a>
+				</li>
+				<li class="nav-item">
+					 <a class="nav-link" href="#">More <span class="badge badge-secondary">16</span></a>
+				</li>
+			</ul>
+		</div>
+		<div class="col-md-1">
+			<ul class="nav nav-pills">
+				<li class="nav-item">
+					 <a class="nav-link btn btn-primary" href="#">Home <span class="badge badge-light">42</span></a>
+				</li>
+				<li class="nav-item">
+					 <a class="nav-link" href="#">More <span class="badge badge-secondary">16</span></a>
+				</li>
+			</ul>
+		</div>
+		<div class="col-md-1">
+			<ul class="nav nav-pills">
+				<li class="nav-item">
+					 <a class="nav-link btn btn-primary" href="#">Home <span class="badge badge-light">42</span></a>
+				</li>
+				<li class="nav-item">
+					 <a class="nav-link" href="#">More <span class="badge badge-secondary">16</span></a>
+				</li>
+			</ul>
+		</div>
+		<div class="col-md-4">
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+			<table class="table table-sm">
+				<thead>
+					<tr>
+						<th>
+							#
+						</th>
+						<th>
+							Product
+						</th>
+						<th>
+							Payment Taken
+						</th>
+						<th>
+							Status
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>
+							1
+						</td>
+						<td>
+							TB - Monthly
+						</td>
+						<td>
+							01/04/2012
+						</td>
+						<td>
+							Default
+						</td>
+					</tr>
+					<tr class="table-active">
+						<td>
+							1
+						</td>
+						<td>
+							TB - Monthly
+						</td>
+						<td>
+							01/04/2012
+						</td>
+						<td>
+							Approved
+						</td>
+					</tr>
+					<tr class="table-success">
+						<td>
+							2
+						</td>
+						<td>
+							TB - Monthly
+						</td>
+						<td>
+							02/04/2012
+						</td>
+						<td>
+							Declined
+						</td>
+					</tr>
+					<tr class="table-warning">
+						<td>
+							3
+						</td>
+						<td>
+							TB - Monthly
+						</td>
+						<td>
+							03/04/2012
+						</td>
+						<td>
+							Pending
+						</td>
+					</tr>
+					<tr class="table-danger">
+						<td>
+							4
+						</td>
+						<td>
+							TB - Monthly
+						</td>
+						<td>
+							04/04/2012
+						</td>
+						<td>
+							Call in to confirm
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="col-md-6">
+			<table class="table table-striped table-hover">
+				<thead>
+					<tr>
+						<th>
+							#
+						</th>
+						<th>
+							Product
+						</th>
+						<th>
+							Payment Taken
+						</th>
+						<th>
+							Status
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>
+							1
+						</td>
+						<td>
+							TB - Monthly
+						</td>
+						<td>
+							01/04/2012
+						</td>
+						<td>
+							Default
+						</td>
+					</tr>
+					<tr class="table-active">
+						<td>
+							1
+						</td>
+						<td>
+							TB - Monthly
+						</td>
+						<td>
+							01/04/2012
+						</td>
+						<td>
+							Approved
+						</td>
+					</tr>
+					<tr class="table-success">
+						<td>
+							2
+						</td>
+						<td>
+							TB - Monthly
+						</td>
+						<td>
+							02/04/2012
+						</td>
+						<td>
+							Declined
+						</td>
+					</tr>
+					<tr class="table-warning">
+						<td>
+							3
+						</td>
+						<td>
+							TB - Monthly
+						</td>
+						<td>
+							03/04/2012
+						</td>
+						<td>
+							Pending
+						</td>
+					</tr>
+					<tr class="table-danger">
+						<td>
+							4
+						</td>
+						<td>
+							TB - Monthly
+						</td>
+						<td>
+							04/04/2012
+						</td>
+						<td>
+							Call in to confirm
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/scripts.js"></script>
+  </body>
+</html>
