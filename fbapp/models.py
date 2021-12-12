@@ -1,7 +1,8 @@
+from os import device_encoding
 from flask_sqlalchemy import SQLAlchemy
 # https://flask-sqlalchemy.palletsprojects.com/en/2.x/models/
 
-import datetime
+import datetime, asyncio
 import logging as lg
 
 from sqlalchemy.sql.elements import Null
@@ -65,27 +66,34 @@ class data_environnement(db.Model):
     batterie = db.Column(db.Integer, nullable=True)
 
     def __init__(self, **kwargs):
-        self.idCapteur = kwargs("idCapteur", 0)
-        self.timeStamp = kwargs("timeStamp", datetime.datetime.now())
-        self.temperature = kwargs("temperature", Null)
-        self.hygrometrie = kwargs("hygrometrie", Null)
-        self.batterie = kwargs("batterie", Null)
+        self.idCapteur = kwargs.get("idCapteur", 0)
+        self.timeStamp = kwargs.get("timeStamp", datetime.datetime.now())
+        self.temperature = kwargs.get("temperature", Null)
+        self.hygrometrie = kwargs.get("hygrometrie", Null)
+        self.batterie = kwargs.get("batterie", Null)
 
     def __repr__(self):
             return f'[id{self.id}]- {self.idCapteur} - {self.timeStamp} - {self.temperature} - {self.hygrometrie} - {self.batterie}'
 
 def init_models():
-    db.drop_all()
-    db.create_all()
-    for c_govee in govee_devices:
-        nvCapteur = capteurs(mac_addr = c_govee, location = govee_devices[c_govee]["identifiant"], name = govee_devices[c_govee]["name"])
-        lg.warning(nvCapteur)
-        db.session.add(nvCapteur)
-    db.session.commit()
-    lg.warning('Database initialized !')
-    data_recepts = scanner_loop()
-    for data_recep in data_recepts:
-        ajout_data(data_recep)
+    # ## Only first time : todo, test à la première création...
+    # db.drop_all()
+    # db.create_all()
+    # for c_govee in govee_devices:
+    #     nvCapteur = capteurs(mac_addr = c_govee, location = govee_devices[c_govee]["identifiant"], name = govee_devices[c_govee]["name"])
+    #     lg.warning(nvCapteur)
+    #     db.session.add(nvCapteur)
+    # db.session.commit()
+    # lg.warning('Database initialized !')
+    data_recepts = asyncio.run(scanner_loop())
+    print(data_recepts)
+    for mac in data_recepts:
+        ajout_data( mac=mac, 
+                    timeStamp=data_recepts[mac]["timeStamp"], 
+                    temperature=data_recepts[mac]["temperature"],
+                    hygrometrie=data_recepts[mac]["hygrometrie"],
+                    batterie=data_recepts[mac]["batterie"],
+                    name=data_recepts[mac]["name"])
     lg.warning('BLE ok')
 
 def ajout_data(**kwargs):
@@ -98,7 +106,7 @@ def ajout_data(**kwargs):
         name = kwargs.get("name", "")
 
     cCapteur = capteurs.query.filter(capteurs.name == name).all()
-    idCapteur = cCapteur.id
+    idCapteur = cCapteur[0].id
     nvData = data_environnement(idCapteur=idCapteur, timeStamp=timeStamp, temperature=temperature, hygrometrie=hygrometrie, batterie=batterie)
     lg.warning(nvData)
     db.session.add(nvData)

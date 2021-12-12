@@ -38,15 +38,15 @@ def detection_callback(device, advertisement_data):
   
     if device.address.startswith(GOVEE_BT_mac_OUI_PREFIX):
         if '0000ec88-0000-1000-8000-00805f9b34fb' in advertisement_data.service_uuids:
+            devices[mac] = {}
             encoded_data = int(advertisement_data.manufacturer_data[60552].hex()[2:8], 16)
-            battery = int(advertisement_data.manufacturer_data[60552].hex()[8:10], 16)
             
             devices[mac]["name"] = advertisement_data.local_name
 
             devices[mac]["temperature"] = decode_temp_in_c(encoded_data)
             devices[mac]["hygrometrie"] = decode_humidity(encoded_data)
 
-            devices[mac]["battery"] = battery
+            devices[mac]["batterie"] = int(advertisement_data.manufacturer_data[60552].hex()[8:10], 16)
 
             devices[mac]["timeStamp"] = datetime.today()
 
@@ -57,5 +57,4 @@ async def scanner_loop():
         await asyncio.sleep(10.0)
         await scanner.stop()
 
-        for mac in devices:
-            yield (devices[mac])
+        return devices
