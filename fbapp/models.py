@@ -1,9 +1,11 @@
 from os import device_encoding
+from flask import sessions
 from flask_sqlalchemy import SQLAlchemy
 # https://flask-sqlalchemy.palletsprojects.com/en/2.x/models/
 
 import datetime, asyncio
 import logging as lg
+import sqlalchemy
 
 from sqlalchemy.sql.elements import Null
 from sqlalchemy.sql.operators import nullsfirst_op
@@ -114,3 +116,10 @@ def ajout_data(**kwargs):
     lg.warning('Data ajouté !')
 
 init_models()
+
+# https://docs.sqlalchemy.org/en/14/orm/query.html
+
+sqlalchemy.select(data_environnement.idCapteur, sqlalchemy.func.max())
+result = sessions.execute(query).fetchall()
+
+print(result)
