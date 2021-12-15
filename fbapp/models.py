@@ -5,8 +5,10 @@ from flask_sqlalchemy import SQLAlchemy
 
 import datetime, asyncio
 import logging as lg
-import sqlalchemy
 
+from sqlalchemy import func, select
+from sqlalchemy import engine
+from sqlalchemy.engine import result
 from sqlalchemy.sql.elements import Null
 from sqlalchemy.sql.operators import nullsfirst_op
 from .controlBLE import scanner_loop
@@ -87,8 +89,8 @@ def init_models():
     #     db.session.add(nvCapteur)
     # db.session.commit()
     # lg.warning('Database initialized !')
+
     data_recepts = asyncio.run(scanner_loop())
-    print(data_recepts)
     for mac in data_recepts:
         ajout_data( mac=mac, 
                     timeStamp=data_recepts[mac]["timeStamp"], 
@@ -119,7 +121,19 @@ init_models()
 
 # https://docs.sqlalchemy.org/en/14/orm/query.html
 
-sqlalchemy.select(data_environnement.idCapteur, sqlalchemy.func.max())
-result = sessions.execute(query).fetchall()
+"""
+SELECT capteurs.location, data_environnement.temperature, data_environnement.hygrometrie, data_environnement.batterie, data_environnement.id
+FROM (SELECT data_environnement.idCapteur, Last(data_environnement.timeStamp) AS DernierDetimeStamp
+        FROM data_environnement
+        GROUP BY data_environnement.idCapteur
+        ORDER BY Last(data_environnement.timeStamp) DESC;) as Requête2 
+INNER JOIN (capteurs INNER JOIN data_environnement ON capteurs.id = data_environnement.idCapteur) 
+    ON (Requête2.idCapteur = data_environnement.idCapteur) 
+    AND (Requête2.DernierDetimeStamp = data_environnement.timeStamp);
 
-print(result)
+"""
+req1 = select(data_environnement.idCapteur, data_environnement.timeStamp).group_by(data_environnement.idCapteur, func.max(data_environnement.timeStamp))
+print(req1)
+results = db.get_engine()
+results.
+print(results)
