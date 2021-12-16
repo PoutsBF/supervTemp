@@ -336,13 +336,7 @@
 					<tr>
 						{% for item in line %}
 						<td>
-							{{% if type(item) is float %}}
- 								{{%- "{:.1f}".format(item) %}}
-							{{% elif (type(item) is datetime) %}}
-								{{%- item.strftime("%d/%m/%y %H:%M") %}}
-							{{% else %}}
-								{{ item }}
-							{{% endif %}}
+							{{ item }}
 						</td>
 						{%- endfor %}
 					</tr>

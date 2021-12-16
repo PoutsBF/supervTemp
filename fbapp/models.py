@@ -1,15 +1,11 @@
 from os import device_encoding
-from flask import sessions
 from flask_sqlalchemy import SQLAlchemy
 # https://flask-sqlalchemy.palletsprojects.com/en/2.x/models/
 
 import datetime, asyncio
 import logging as lg
 
-from sqlalchemy import engine
-from sqlalchemy.engine import result
 from sqlalchemy.sql.elements import Null
-from sqlalchemy.sql.operators import nullsfirst_op
 from .controlBLE import scanner_loop
 from .views import app
 
@@ -78,17 +74,18 @@ class data_environnement(db.Model):
     def __repr__(self):
             return f'[id{self.id}]- {self.idCapteur} - {self.timeStamp} - {self.temperature} - {self.hygrometrie} - {self.batterie}'
 
-def init_models():
-    # ## Only first time : todo, test à la première création...
-    # db.drop_all()
-    # db.create_all()
-    # for c_govee in govee_devices:
-    #     nvCapteur = capteurs(mac_addr = c_govee, location = govee_devices[c_govee]["identifiant"], name = govee_devices[c_govee]["name"])
-    #     lg.warning(nvCapteur)
-    #     db.session.add(nvCapteur)
-    # db.session.commit()
-    # lg.warning('Database initialized !')
+def first_init_models():
+    ## Only first time : todo, test à la première création...
+    db.drop_all()
+    db.create_all()
+    for c_govee in govee_devices:
+        nvCapteur = capteurs(mac_addr = c_govee, location = govee_devices[c_govee]["identifiant"], name = govee_devices[c_govee]["name"])
+        lg.warning(nvCapteur)
+        db.session.add(nvCapteur)
+    db.session.commit()
+    lg.warning('Database initialized !')
 
+def init_models():
     data_recepts = asyncio.run(scanner_loop())
     for mac in data_recepts:
         ajout_data( mac=mac, 
