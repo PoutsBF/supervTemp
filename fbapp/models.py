@@ -120,6 +120,16 @@ init_models()
 # https://docs.sqlalchemy.org/en/14/orm/query.html
 # https://www.it-swarm-fr.com/fr/python/flask-sqlalchemy-ou-sqlalchemy/1071549488/
 # https://www.it-swarm-fr.com/fr/python/flask-sqlalchemy-verifie-si-une-ligne-existe-dans-la-table/1055082755/
+# https://tahe.developpez.com/tutoriels-cours/python-flask-2020/?page=utilisation-de-l-orm-sqlalchemy
+# https://www.it-swarm-fr.com/fr/python/sqlalchemy-execution-de-sql-brut-avec-des-liaisons-de-parametres/1046333386/
+# https://www.it-swarm-fr.com/fr/python/comment-executer-du-sql-brut-dans-lapplication-sqlalchemy-flask/1040641848/
+# https://www.it-swarm-fr.com/fr/python/sqlalchemy-comment-filtrer-le-champ-de-date/942617220/
+# https://www.it-swarm-fr.com/fr/python/sqlalchemy-order-descending/970413406/
+# https://www.it-swarm-fr.com/fr/python/comment-obtenir-une-requete-sql-brute-et-compilee-partir-dune-expression-sqlalchemy/970316003/
+# https://www.it-swarm-fr.com/fr/python/comment-creer-une-vue-sql-avec-sqlalchemy/941845648/
+# https://www.it-swarm-fr.com/fr/python/sqlalchemy-sous-requete-dans-une-clause-where/972953636/
+# https://flask-sqlalchemy.palletsprojects.com/en/2.x/queries/
+# https://flask.palletsprojects.com/en/2.0.x/patterns/fileuploads/
 
 sqlalchemy.select(data_environnement.idCapteur, sqlalchemy.func.max())
 result = sessions.execute(query).fetchall()
