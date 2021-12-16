@@ -6,7 +6,6 @@ from flask_sqlalchemy import SQLAlchemy
 import datetime, asyncio
 import logging as lg
 
-from sqlalchemy import func, select
 from sqlalchemy import engine
 from sqlalchemy.engine import result
 from sqlalchemy.sql.elements import Null
@@ -65,8 +64,8 @@ class data_environnement(db.Model):
     idCapteur = db.Column(db.Integer, db.ForeignKey('capteurs.id'), nullable=False)
 
     timeStamp = db.Column(db.DateTime, nullable=False)
-    temperature = db.Column(db.Float, nullable=True)
-    hygrometrie = db.Column(db.Float, nullable=True)
+    temperature = db.Column(db.Float(precision=1), nullable=True)
+    hygrometrie = db.Column(db.Float(precision=1), nullable=True)
     batterie = db.Column(db.Integer, nullable=True)
 
     def __init__(self, **kwargs):
@@ -112,10 +111,8 @@ def ajout_data(**kwargs):
     cCapteur = capteurs.query.filter(capteurs.name == name).all()
     idCapteur = cCapteur[0].id
     nvData = data_environnement(idCapteur=idCapteur, timeStamp=timeStamp, temperature=temperature, hygrometrie=hygrometrie, batterie=batterie)
-    lg.warning(nvData)
     db.session.add(nvData)
     db.session.commit()
-    lg.warning('Data ajouté !')
 
 init_models()
 
@@ -143,9 +140,11 @@ INNER JOIN (capteurs INNER JOIN data_environnement ON capteurs.id = data_environ
     ON (Requête2.idCapteur = data_environnement.idCapteur) 
     AND (Requête2.DernierDetimeStamp = data_environnement.timeStamp);
 
+    cd "E:\data\codage\supervTemp>"
+    e:
+    .\env\Scripts\activate
+    set FLASK_APP=run.py
+    flask shell
+
 """
-req1 = select(data_environnement.idCapteur, data_environnement.timeStamp).group_by(data_environnement.idCapteur, func.max(data_environnement.timeStamp))
-print(req1)
-results = db.get_engine()
-results.
-print(results)
+# req1 = db.session.query(data_environnement.idCapteur, func.max(data_environnement.timeStamp), capteurs.location).group_by(data_environnement.idCapteur).where(data_environnement.idCapteur==capteurs.id).all()

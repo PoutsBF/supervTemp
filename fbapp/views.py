@@ -1,14 +1,19 @@
 from flask import Flask, render_template, url_for, request
+from datetime import datetime
+
+from time import strftime
 import logging as lg
 
 app = Flask(__name__)
 app.config.from_object('config')
 
-#from .utils import find_content
+from .utils import find_content
 
 @app.route('/')
 @app.route('/index/')
 def index():
+    req1 = find_content()
+
     # if 'img' in request.args:
     #     img = request.args['img']
     #     og_url = url_for('index', img=img, _external=True)
@@ -21,7 +26,7 @@ def index():
     # page_title = "Le test ultime"
 
     # og_description = "Découvre qui tu es vraiment en faisant le test ultime !"
-    return render_template('index.html')
+    return render_template('index.html', liste_data=req1)
                         #   user_name='Julio',
                         #   user_image=url_for('static', filename='img/profile.png'),
                         #   description=description,

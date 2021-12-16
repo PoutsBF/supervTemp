@@ -31,12 +31,18 @@
 		<div class="col-md-1">
 			<ul class="nav nav-pills">
 				<li class="nav-item">
-					 {{ nom_capteur[0] }}
+					 nom capteur
 				</li>
 				<li class="nav-item">
-					 {{ temperature_[0] }}
+					 20,2°C
 				</li>
-			</ul>
+				<li class="nav-item">
+					56 %HR
+				</li>
+				<li class="nav-item">
+					66%
+				</li>
+			 </ul>
 		</div>
 		<div class="col-md-1">
 			<ul class="nav nav-pills">
@@ -204,6 +210,9 @@
 				</tbody>
 			</table>
 		</div>
+		{%- for message in get_flashed_messages() %}
+			{{ message }}
+	    {%- endfor %}
 		<div class="col-md-6">
 			<table class="table table-striped table-hover">
 				<thead>
@@ -293,6 +302,51 @@
 							Call in to confirm
 						</td>
 					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<table class="table table-sm">
+				<thead>
+					<tr>						
+						<th>
+							#
+						</th>
+						<th>
+							date
+						</th>
+						<th>
+							pièce
+						</th>
+						<th>
+							température
+						</th>
+						<th>
+							hygrométrie
+						</th>
+						<th>
+							batterie
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					{%- for line in liste_data %}
+					<tr>
+						{% for item in line %}
+						<td>
+							{{% if type(item) is float %}}
+ 								{{%- "{:.1f}".format(item) %}}
+							{{% elif (type(item) is datetime) %}}
+								{{%- item.strftime("%d/%m/%y %H:%M") %}}
+							{{% else %}}
+								{{ item }}
+							{{% endif %}}
+						</td>
+						{%- endfor %}
+					</tr>
+					{%- endfor %}
 				</tbody>
 			</table>
 		</div>
