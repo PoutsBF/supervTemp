@@ -118,6 +118,8 @@ def ajout_data(**kwargs):
 init_models()
 
 # https://docs.sqlalchemy.org/en/14/orm/query.html
+# https://www.it-swarm-fr.com/fr/python/flask-sqlalchemy-ou-sqlalchemy/1071549488/
+# https://www.it-swarm-fr.com/fr/python/flask-sqlalchemy-verifie-si-une-ligne-existe-dans-la-table/1055082755/
 
 sqlalchemy.select(data_environnement.idCapteur, sqlalchemy.func.max())
 result = sessions.execute(query).fetchall()
