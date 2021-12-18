@@ -1,33 +1,35 @@
 # supervTemp
 
-# Commentaires à venir...
+## Commentaires à venir...
 
-# Todo :
+## Todo :
 - mettre les infos temps réel en standby et passer le callback en websocket
 - mettre en place un graphe paramétré 
 > 1 an / 1 mois / 1 semaine / 24h
 - 
 
-# Sources / bibliothèques
-## Flask
+## Sources / bibliothèques
+### Flask
 
-## Flask-SQLalchemy
+### Flask-SQLalchemy
 
-## Bleak (Bluetooth)
+### Bleak (Bluetooth)
 
-## Bootstrap
+### Bootstrap
 Template pour la page HTML
 [https://getbootstrap.com/](https://getbootstrap.com/ "site Bootstrap")
 
-## Bootstrap table
+### Bootstrap table
 Gestion des tableaux HTML : filtre / tri / pagination notamment
 [https://bootstrap-table.com/](https://bootstrap-table.com/ "Site Bootstrap-table")
 
-# Outils
-## LayouIT
+## Outils
+### LayouIT
 Pour la création assistée du template Bootstrap
 [https://www.layoutit.com/](https://www.layoutit.com/ "Site layout it")
 
+
+----
 
 *Texte en italique*
 _Texte en italique_
