@@ -10,6 +10,9 @@
     <meta name="description" content="affichage des informations des thermomètres Bluetooth">
     <meta name="author" content="Stéphane Lepoutère">
 
+    <!-- fontAwesome pour les boutons Core CSS -->
+    <link href="{{ url_for('static', filename='css/all.css') }}" rel="stylesheet">
+
     <!-- Bootstrap Core CSS -->
     <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
 
@@ -70,210 +73,30 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-md-6">
-			<table class="table table-sm">
-				<thead>
-					<tr>
-						<th>
-							#
-						</th>
-						<th>
-							Product
-						</th>
-						<th>
-							Payment Taken
-						</th>
-						<th>
-							Status
-						</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>
-							1
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							01/04/2012
-						</td>
-						<td>
-							Default
-						</td>
-					</tr>
-					<tr class="table-active">
-						<td>
-							1
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							01/04/2012
-						</td>
-						<td>
-							Approved
-						</td>
-					</tr>
-					<tr class="table-success">
-						<td>
-							2
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							02/04/2012
-						</td>
-						<td>
-							Declined
-						</td>
-					</tr>
-					<tr class="table-warning">
-						<td>
-							3
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							03/04/2012
-						</td>
-						<td>
-							Pending
-						</td>
-					</tr>
-					<tr class="table-danger">
-						<td>
-							4
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							04/04/2012
-						</td>
-						<td>
-							Call in to confirm
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-		{%- for message in get_flashed_messages() %}
-			{{ message }}
-	    {%- endfor %}
-		<div class="col-md-6">
-			<table class="table table-striped table-hover">
-				<thead>
-					<tr>
-						<th>
-							#
-						</th>
-						<th>
-							Product
-						</th>
-						<th>
-							Payment Taken
-						</th>
-						<th>
-							Status
-						</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>
-							1
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							01/04/2012
-						</td>
-						<td>
-							Default
-						</td>
-					</tr>
-					<tr class="table-active">
-						<td>
-							1
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							01/04/2012
-						</td>
-						<td>
-							Approved
-						</td>
-					</tr>
-					<tr class="table-success">
-						<td>
-							2
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							02/04/2012
-						</td>
-						<td>
-							Declined
-						</td>
-					</tr>
-					<tr class="table-warning">
-						<td>
-							3
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							03/04/2012
-						</td>
-						<td>
-							Pending
-						</td>
-					</tr>
-					<tr class="table-danger">
-						<td>
-							4
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							04/04/2012
-						</td>
-						<td>
-							Call in to confirm
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-	</div>
-	<div class="row">
 		<div class="col-md-12">
 			<table class="table table-sm" 
 					data-toggle="table"
 					data-filter-control="true"
 					data-show-search-clear-button="true"
+					data-toolbar=".toolbar"
+					data-sortable="false"
+					data-show-multi-sort="true"
+					data-sort-priority='[{"sortName": "date","sortOrder":"desc"},{"sortName":"localisation","sortOrder":"desc"}]'
+					data-pagination="true"
 					 >
 				<thead>
 					<tr>						
 						<th>
 							#
 						</th>
-						<th>
+						<th data-field="date"
+							data-sortable="true">
 							date
 						</th>
-						<th data-field="localisation" data-filter-control="select">
+						<th data-field="localisation" 
+							data-filter-control="select"
+							data-sortable="true"
+							>
 							pièce
 						</th>
 						<th>
@@ -313,10 +136,18 @@
     <script src="{{ url_for('static', filename='js/bootstrap-table.min.js') }}"></script>
 
 	<!-- Bootstrap-table Core JavaScript -->
+    <script src="{{ url_for('static', filename='js/jquery.tablednd.min.js') }}"></script>
+
+	<!-- Bootstrap-table Core JavaScript -->
     <script src="{{ url_for('static', filename='js/bootstrap-table-fr-FR.min.js') }}"></script>
 
 	<!-- Bootstrap-table Core JavaScript -->
     <script src="{{ url_for('static', filename='js/bootstrap-table-filter-control.min.js') }}"></script>
+
+	<!-- Bootstrap-table Core JavaScript -->
+    <script src="{{ url_for('static', filename='js/bootstrap-table-multiple-sort.js') }}"></script>
+
+	<!--					data-reorderable-rows="true"-->
 
 	<!-- Theme JavaScript -->
     <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>

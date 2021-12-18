@@ -2,10 +2,29 @@
 
 Commentaires à venir...
 
+# Sources / bibliothèques
+## Flask
+
+## Flask-SQLalchemy
+
+## Bleak (Bluetooth)
+
+## Bootstrap
+Template pour la page HTML
+[https://getbootstrap.com/](https://getbootstrap.com/ "site Bootstrap")
+
+## Bootstrap table
+Gestion des tableaux HTML : filtre / tri / pagination notamment
+[https://bootstrap-table.com/](https://bootstrap-table.com/ "Site Bootstrap-table")
+
+# Outils
+## LayouIT
+Pour la création assistée du template Bootstrap
+[https://www.layoutit.com/](https://www.layoutit.com/ "Site layout it")
+
 
 Todo :
 - mettre les infos temps réel en standby et passer le callback en websocket
-- mettre des filtres sur le tableau
 - mettre en place un graphe paramétré 
 -- 1 an / 1 mois / 1 semaine / 24h
 -- 
@@ -59,7 +78,6 @@ C’est le `code`.
 ```
 
 Ici ce qui suit [Lien](https://example.com/ "titre de lien optionnel").
-
 
 ![Ceci est un exemple d’image](https://example.com/bild.jpg)
 
