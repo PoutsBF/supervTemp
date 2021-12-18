@@ -13,6 +13,9 @@
     <!-- Bootstrap Core CSS -->
     <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
 
+    <!-- Bootstrap-table Core CSS -->
+	<link href="{{ url_for('static', filename='css/bootstrap-table.min.css') }}" rel="stylesheet">
+
     <!-- Theme CSS -->
     <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
 
@@ -22,99 +25,48 @@
     <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">
-			<h3>
-				Température Pout's Fam House !
-			</h3>
+			<div class="page-header">
+				<h1>
+					Température Pout's Fam House !
+				</h1>
+			</div>
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-md-1">
-			<ul class="nav nav-pills">
-				<li class="nav-item">
-					 nom capteur
-				</li>
-				<li class="nav-item">
-					 20,2°C
-				</li>
-				<li class="nav-item">
-					56 %HR
-				</li>
-				<li class="nav-item">
-					66%
-				</li>
-			 </ul>
-		</div>
-		<div class="col-md-1">
-			<ul class="nav nav-pills">
-				<li class="nav-item">
-					 <a class="nav-link btn btn-primary" href="#">Home <span class="badge badge-light">42</span></a>
-				</li>
-				<li class="nav-item">
-					 <a class="nav-link" href="#">More <span class="badge badge-secondary">16</span></a>
-				</li>
-			</ul>
-		</div>
-		<div class="col-md-1">
-			<ul class="nav nav-pills">
-				<li class="nav-item">
-					 <a class="nav-link btn btn-primary" href="#">Home <span class="badge badge-light">42</span></a>
-				</li>
-				<li class="nav-item">
-					 <a class="nav-link" href="#">More <span class="badge badge-secondary">16</span></a>
-				</li>
-			</ul>
-		</div>
-		<div class="col-md-1">
-			<ul class="nav nav-pills">
-				<li class="nav-item">
-					 <a class="nav-link btn btn-primary" href="#">Home <span class="badge badge-light">42</span></a>
-				</li>
-				<li class="nav-item">
-					 <a class="nav-link" href="#">More <span class="badge badge-secondary">16</span></a>
-				</li>
-			</ul>
-		</div>
-		<div class="col-md-1">
-			<ul class="nav nav-pills">
-				<li class="nav-item">
-					 <a class="nav-link btn btn-primary" href="#">Home <span class="badge badge-light">42</span></a>
-				</li>
-				<li class="nav-item">
-					 <a class="nav-link" href="#">More <span class="badge badge-secondary">16</span></a>
-				</li>
-			</ul>
-		</div>
-		<div class="col-md-1">
-			<ul class="nav nav-pills">
-				<li class="nav-item">
-					 <a class="nav-link btn btn-primary" href="#">Home <span class="badge badge-light">42</span></a>
-				</li>
-				<li class="nav-item">
-					 <a class="nav-link" href="#">More <span class="badge badge-secondary">16</span></a>
-				</li>
-			</ul>
-		</div>
-		<div class="col-md-1">
-			<ul class="nav nav-pills">
-				<li class="nav-item">
-					 <a class="nav-link btn btn-primary" href="#">Home <span class="badge badge-light">42</span></a>
-				</li>
-				<li class="nav-item">
-					 <a class="nav-link" href="#">More <span class="badge badge-secondary">16</span></a>
-				</li>
-			</ul>
-		</div>
-		<div class="col-md-1">
-			<ul class="nav nav-pills">
-				<li class="nav-item">
-					 <a class="nav-link btn btn-primary" href="#">Home <span class="badge badge-light">42</span></a>
-				</li>
-				<li class="nav-item">
-					 <a class="nav-link" href="#">More <span class="badge badge-secondary">16</span></a>
-				</li>
-			</ul>
-		</div>
-		<div class="col-md-4">
+		<div class="col-md-12">
+			<div class="card-columns">
+			{%- for pos in range(0, 8) %}
+			<div class="card text-center">
+					<h5 class="card-header" style="height: 4em;">
+					{{ liste_data[pos][2] }}
+				</h5>
+				<div class="card-body">
+					<button type="button" class="btn btn-danger">
+						{{ liste_data[pos][3] }}<span class="badge badge-light">°C</span>
+					</button> 
+					<button type="button" class="btn btn-primary">
+						{{ liste_data[pos][4] }}<span class="badge badge-light">%HR</span>
+					</button>
+					<div class="img-battery">
+						<img 
+						
+						src="{{ url_for('static', filename='img/battery_level_w50px.png') }}" 
+						alt="batterie : {{ liste_data[pos][5] }} %"
+						title="batterie : {{ liste_data[pos][5] }} %"
+						class="card-img-top {%- if liste_data[pos][5] > 80 %} battery_100pc
+											   {%- elif liste_data[pos][5] > 60 %} battery_80pc
+											{%- elif liste_data[pos][5] > 40 %} battery_60pc
+											{%- elif liste_data[pos][5] > 20 %} battery_40pc
+											{%- else %} battery_20pc {%- endif %}"
+						/>
+					</div>
+				</div>
+				<div class="card-footer">
+					{{ liste_data[pos][1] }} 
+				</div>
+			</div>
+			{%- endfor %}
+			</div>
 		</div>
 	</div>
 	<div class="row">
@@ -308,7 +260,11 @@
 	</div>
 	<div class="row">
 		<div class="col-md-12">
-			<table class="table table-sm">
+			<table class="table table-sm" 
+					data-toggle="table"
+					data-filter-control="true"
+					data-show-search-clear-button="true"
+					 >
 				<thead>
 					<tr>						
 						<th>
@@ -317,7 +273,7 @@
 						<th>
 							date
 						</th>
-						<th>
+						<th data-field="localisation" data-filter-control="select">
 							pièce
 						</th>
 						<th>
@@ -332,11 +288,11 @@
 					</tr>
 				</thead>
 				<tbody>
-					{%- for line in liste_data %}
+					{%- for line in liste_all %}
 					<tr>
 						{% for item in line %}
 						<td>
-							{{ item }}
+								{{ item }}
 						</td>
 						{%- endfor %}
 					</tr>
@@ -353,7 +309,23 @@
 	<!-- Bootstrap Core JavaScript -->
     <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
 
-    <!-- Theme JavaScript -->
+	<!-- Bootstrap-table Core JavaScript -->
+    <script src="{{ url_for('static', filename='js/bootstrap-table.min.js') }}"></script>
+
+	<!-- Bootstrap-table Core JavaScript -->
+    <script src="{{ url_for('static', filename='js/bootstrap-table-fr-FR.min.js') }}"></script>
+
+	<!-- Bootstrap-table Core JavaScript -->
+    <script src="{{ url_for('static', filename='js/bootstrap-table-filter-control.min.js') }}"></script>
+
+	<!-- Theme JavaScript -->
     <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+
+	<script>
+		$(function() {
+		  $('#table').bootstrapTable()
+		})
+	  </script>
+
 </body>
 </html>

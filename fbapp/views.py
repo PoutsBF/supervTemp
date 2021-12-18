@@ -12,7 +12,8 @@ from .utils import find_content
 @app.route('/')
 @app.route('/index/')
 def index():
-    req1 = find_content()
+    req1 = find_content("all")
+    req2 = find_content("instant")
 
     # if 'img' in request.args:
     #     img = request.args['img']
@@ -26,7 +27,7 @@ def index():
     # page_title = "Le test ultime"
 
     # og_description = "Découvre qui tu es vraiment en faisant le test ultime !"
-    return render_template('index.html', liste_data=req1)
+    return render_template('index.html', liste_data=req1, liste_all=req2)
                         #   user_name='Julio',
                         #   user_image=url_for('static', filename='img/profile.png'),
                         #   description=description,

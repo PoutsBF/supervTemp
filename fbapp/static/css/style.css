@@ -1,1 +1,50 @@
-# Empty CSS file for your own CSS
+/* Empty CSS file for your own CSS */
+
+.img-battery { 
+    position: relative;
+    width: 50px;
+    height: 23px;
+    overflow: hidden;
+    text-align: left;
+    margin: auto;
+    margin-bottom: 2px !important;
+}
+
+.battery_0pc {
+    position:absolute;
+    top: 0px;
+}
+.battery_20pc {
+    position:absolute;
+    top: -22px;
+}
+.battery_40pc {
+    position:absolute;
+    top: -44px;
+}
+.battery_60pc {
+    position:absolute;
+    top: -66px;
+}
+.battery_80pc {
+    position:absolute;
+    top: -88px;
+}
+.battery_100pc {
+    position:absolute;
+    top: -110px;
+}
+
+.nav {
+    display: block ruby;
+    margin: auto;
+}
+ 
+.card-columns {
+    @include media-breakpoint-only(lg) {
+      column-count: 4;
+    }
+    @include media-breakpoint-only(xl) {
+      column-count: 5;
+    }
+  }
