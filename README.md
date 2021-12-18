@@ -1,6 +1,12 @@
 # supervTemp
 
-Commentaires à venir...
+# Commentaires à venir...
+
+# Todo :
+- mettre les infos temps réel en standby et passer le callback en websocket
+- mettre en place un graphe paramétré 
+> 1 an / 1 mois / 1 semaine / 24h
+- 
 
 # Sources / bibliothèques
 ## Flask
@@ -23,13 +29,6 @@ Pour la création assistée du template Bootstrap
 [https://www.layoutit.com/](https://www.layoutit.com/ "Site layout it")
 
 
-Todo :
-- mettre les infos temps réel en standby et passer le callback en websocket
-- mettre en place un graphe paramétré 
--- 1 an / 1 mois / 1 semaine / 24h
--- 
-
-
 *Texte en italique*
 _Texte en italique_
 **Texte en gras**
@@ -47,6 +46,7 @@ ___Texte en italique et en gras___
 Titre 1
 =
 Titre 2
+-
 
 >Ceci est une **zone en retrait**.
 >La zone continue ici
