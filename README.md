@@ -4,6 +4,7 @@
 
 ## Todo :
 - mettre les infos temps réel en standby et passer le callback en websocket
+- Intégrer les températures dans un plan
 - mettre en place un graphe paramétré 
 > 1 an / 1 mois / 1 semaine / 24h
 - 

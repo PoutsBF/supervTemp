@@ -11,7 +11,7 @@
     <meta name="author" content="Stéphane Lepoutère">
 
     <!-- fontAwesome pour les boutons Core CSS -->
-    <link href="{{ url_for('static', filename='css/all.css') }}" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" rel="stylesheet">
 
     <!-- Bootstrap Core CSS -->
     <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
@@ -37,10 +37,10 @@
 	</div>
 	<div class="row">
 		<div class="col-md-12">
-			<div class="card-columns">
+			<div class="card-deck">
 			{%- for pos in range(0, 8) %}
 			<div class="card text-center">
-					<h5 class="card-header" style="height: 4em;">
+					<h5 class="card-header">
 					{{ liste_data[pos][2] }}
 				</h5>
 				<div class="card-body">
@@ -51,16 +51,15 @@
 						{{ liste_data[pos][4] }}<span class="badge badge-light">%HR</span>
 					</button>
 					<div class="img-battery">
-						<img 
-						
+						<img 						
 						src="{{ url_for('static', filename='img/battery_level_w50px.png') }}" 
 						alt="batterie : {{ liste_data[pos][5] }} %"
 						title="batterie : {{ liste_data[pos][5] }} %"
-						class="card-img-top {%- if liste_data[pos][5] > 80 %} battery_100pc
-											   {%- elif liste_data[pos][5] > 60 %} battery_80pc
-											{%- elif liste_data[pos][5] > 40 %} battery_60pc
-											{%- elif liste_data[pos][5] > 20 %} battery_40pc
-											{%- else %} battery_20pc {%- endif %}"
+						class="card-img-top rounded {%- if liste_data[pos][5] > 80 %} battery_100pc
+											   		{%- elif liste_data[pos][5] > 60 %} battery_80pc
+													{%- elif liste_data[pos][5] > 40 %} battery_60pc
+													{%- elif liste_data[pos][5] > 20 %} battery_40pc
+													{%- else %} battery_20pc {%- endif %}"
 						/>
 					</div>
 				</div>
@@ -79,7 +78,7 @@
 					data-filter-control="true"
 					data-show-search-clear-button="true"
 					data-toolbar=".toolbar"
-					data-sortable="false"
+					data-sortable="true"
 					data-show-multi-sort="true"
 					data-sort-priority='[{"sortName": "date","sortOrder":"desc"},{"sortName":"localisation","sortOrder":"desc"}]'
 					data-pagination="true"

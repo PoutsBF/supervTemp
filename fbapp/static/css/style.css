@@ -1,5 +1,11 @@
 /* Empty CSS file for your own CSS */
 
+.card-header {
+    height: 3em;
+}
+.card-body .btn {
+    margin: 2px;
+}
 .img-battery { 
     position: relative;
     width: 50px;
@@ -10,7 +16,6 @@
     margin-bottom: 5px !important;
     margin-top: 5px !important;
 }
-
 .battery_0pc {
     position:absolute;
     top: 0px;

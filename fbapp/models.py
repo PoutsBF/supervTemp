@@ -111,7 +111,7 @@ def ajout_data(**kwargs):
     db.session.add(nvData)
     db.session.commit()
 
-init_models()
+# init_models()
 
 # https://docs.sqlalchemy.org/en/14/orm/query.html
 # https://www.it-swarm-fr.com/fr/python/flask-sqlalchemy-ou-sqlalchemy/1071549488/

@@ -1,12 +1,29 @@
 import random
 import logging as lg
 from sqlalchemy import func
-from datetime import datetime
+from datetime import date, datetime, time, timedelta
 
 from .models  import db, data_environnement, capteurs, init_models
 
+"""
+------------ Décoration pour les variables statiques -------------
+"""
+def static(dict_var_val):
+    def staticf(f):    
+        def decorated(*args, **kwargs):
+            for var, val in dict_var_val.items():
+                if not (hasattr(decorated, var)):
+                    setattr(decorated, var, val)
+            return f(*args, **kwargs)
+        return decorated
+    return staticf
 
+@static({'last_stamp': datetime.today()})
 def find_content(etendue):
+    if find_content.last_stamp < datetime.today() :
+        find_content.last_stamp += timedelta(minutes=30)
+        init_models()
+
     retour = []
     if etendue == "all":
         req = db.session.query(data_environnement.idCapteur, \
@@ -20,7 +37,6 @@ def find_content(etendue):
                 .all()
 
     elif etendue == "instant":
-        init_models()
         req = db.session.query(data_environnement.idCapteur, \
                                data_environnement.timeStamp, \
                                capteurs.location, \
