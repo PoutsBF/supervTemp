@@ -29,34 +29,34 @@ L'objectif de ce projet est donc :
 ## Sources / bibliothèques
 ### Flask
 Web serveur 
-[documentation Flask](https://flask.palletsprojects.com/en/2.0.x/)
+- [documentation Flask](https://flask.palletsprojects.com/en/2.0.x/)
 
 ### Flask-SQLalchemy
 ORM (Object-Relational Mapping) pour l'accès à la BDD
-[documentation Flask SQL Alchemy](https://flask-sqlalchemy.palletsprojects.com/en/2.x/)
+- [documentation Flask SQL Alchemy](https://flask-sqlalchemy.palletsprojects.com/en/2.x/)
 
 ### Flask-SocketIO
 Gestion des webservices (pour la mise à jour des champs en asynchrone et dans le cas de mise à jour)
-[documentation Flask Socket IO](https://flask-socketio.readthedocs.io/)
+- [documentation Flask Socket IO](https://flask-socketio.readthedocs.io/)
 
 ### Bleak (Bluetooth)
 Interface windows et raspbian pour l'utilisation du Bluetooth
-[documentation Bleak](https://bleak.readthedocs.io/)
-[projet Bleak](https://pypi.org/project/bleak/)
-[Github Bleak](https://github.com/hbldh/bleak/tree/master)
+- [documentation Bleak](https://bleak.readthedocs.io/)
+- [projet Bleak](https://pypi.org/project/bleak/)
+- [Github Bleak](https://github.com/hbldh/bleak/tree/master)
 
 ### Bootstrap
 Template pour la page HTML
-[https://getbootstrap.com/](https://getbootstrap.com/ "site Bootstrap")
+- [https://getbootstrap.com/](https://getbootstrap.com/ "site Bootstrap")
 
 ### Bootstrap table
 Gestion des tableaux HTML : filtre / tri / pagination notamment
-[https://bootstrap-table.com/](https://bootstrap-table.com/ "Site Bootstrap-table")
+- [https://bootstrap-table.com/](https://bootstrap-table.com/ "Site Bootstrap-table")
 
 ## Outils
 ### LayouIT
 Pour la création assistée du template Bootstrap
-[https://www.layoutit.com/](https://www.layoutit.com/ "Site layout it")
+- [https://www.layoutit.com/](https://www.layoutit.com/ "Site layout it")
 
 
 ----
