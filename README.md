@@ -1,6 +1,23 @@
 # supervTemp
 
 ## Commentaires à venir...
+J'ai acheté des thermo/hygromètres Govee, qui ont la particularité d'être Bluetooth pour l'observation instantanée et pour l'acquisition longue durée.
+Pour l'acquisition instantanée, un scan permet d'avoir en réponse un bloc contenant la température, l'hygrométrie et le niveau de batterie.
+Des exemples de découvertes sont (crédits) :
+- [GoveeBTTempLogger](https://github.com/wcbonner/GoveeBTTempLogger)
+- [home is where you hang your hack](https://github.com/home-is-where-you-hang-your-hack/sensor.goveetemp_bt_hci) (protocole)
+- [GoveeWatcher](https://github.com/Thrilleratplay/GoveeWatcher)
+- [site Govee](https://eu.govee.com/collections/home-improvement)
+- [Govee BT client](https://github.com/asednev/govee-bt-client)
+- [GoveeTemperatureAndHumidity](https://github.com/neilsheps/GoveeTemperatureAndHumidity)
+- [bluetooth-temperature-sensors](https://github.com/deepcoder/bluetooth-temperature-sensors)
+
+Je suis intéressé par l'acquisition longue durée mais les informations sont difficiles à extraire (l'assistance Govee ne fournit pas les informations, une observation par WireShark sera nécessaire).
+
+L'objectif de ce projet est donc :
+- scan et acquisition des valeurs instantanées de 8 thermomètres
+- Enregistrement dans 2 tables jointes (capteurs / datas) d'une base SQLite, à l'aide de l'ORM Flask-SQLAlchemy
+- Web serveur Flask pour l'affichage des thermomètres, de l'implantation dans un plan, et la liste des dernières acquisitions
 
 ## Todo :
 - mettre les infos temps réel en standby et passer le callback en websocket
@@ -11,10 +28,22 @@
 
 ## Sources / bibliothèques
 ### Flask
+Web serveur 
+[documentation Flask](https://flask.palletsprojects.com/en/2.0.x/)
 
 ### Flask-SQLalchemy
+ORM (Object-Relational Mapping) pour l'accès à la BDD
+[documentation Flask SQL Alchemy](https://flask-sqlalchemy.palletsprojects.com/en/2.x/)
+
+### Flask-SocketIO
+Gestion des webservices (pour la mise à jour des champs en asynchrone et dans le cas de mise à jour)
+[documentation Flask Socket IO](https://flask-socketio.readthedocs.io/)
 
 ### Bleak (Bluetooth)
+Interface windows et raspbian pour l'utilisation du Bluetooth
+[documentation Bleak](https://bleak.readthedocs.io/)
+[projet Bleak](https://pypi.org/project/bleak/)
+[Github Bleak](https://github.com/hbldh/bleak/tree/master)
 
 ### Bootstrap
 Template pour la page HTML
