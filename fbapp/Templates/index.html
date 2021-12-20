@@ -22,6 +22,9 @@
     <!-- Theme CSS -->
     <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
 
+	<!-- Script pour les web sockets -->
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.0/socket.io.min.js"></script>
+
 </head>
   <body>
 
@@ -33,6 +36,12 @@
 					Température Pout's Fam House !
 				</h1>
 			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<button onclick="json_button()">Json Message</button>
+			<button onclick="alert_button()">Alert Message</button>
 		</div>
 	</div>
 	<div class="row">
@@ -135,7 +144,7 @@
     <script src="{{ url_for('static', filename='js/bootstrap-table.min.js') }}"></script>
 
 	<!-- Bootstrap-table Core JavaScript -->
-    <script src="{{ url_for('static', filename='js/jquery.tablednd.min.js') }}"></script>
+    <!-- <script src="{{ url_for('static', filename='js/jquery.tablednd.min.js') }}"></script>4 -->
 
 	<!-- Bootstrap-table Core JavaScript -->
     <script src="{{ url_for('static', filename='js/bootstrap-table-fr-FR.min.js') }}"></script>
@@ -150,12 +159,6 @@
 
 	<!-- Theme JavaScript -->
     <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
-
-	<script>
-		$(function() {
-		  $('#table').bootstrapTable()
-		})
-	  </script>
 
 </body>
 </html>
