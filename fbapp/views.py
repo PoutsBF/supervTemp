@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+import asyncio
 from flask import Flask, render_template, url_for, request, copy_current_request_context, session
 from flask_socketio import SocketIO, send, emit, disconnect
 from datetime import datetime
@@ -14,7 +15,7 @@ app.config.from_object('config')
 socketio = SocketIO(app, async_mode=async_mode)
 thread_lock = Lock()
 
-from .utils import find_content
+from .utils import find_content, BaseThread
 
 @app.route('/')
 @app.route('/index/')
@@ -47,6 +48,11 @@ def index():
 @socketio.on('client_connected')
 def handle_client_connect_event(json):
     print('received json: {0}'.format(str(json)))
+    thread = BaseThread(
+        name='test',
+        callback=cb_retour,
+    )
+    thread.start()
 
 @socketio.on('json_button', namespace=None)
 def handle_json_button(*args):
@@ -81,6 +87,9 @@ def disconnect_request():
     emit('my_response',
          {'data': 'Disconnected!', 'count': session['receive_count']},
          callback=can_disconnect)
+
+def cb_retour(req):
+    asyncio. (emit('maj_data', req))
 
 if __name__ == "__main__":
     app.run()

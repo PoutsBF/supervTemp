@@ -8,7 +8,7 @@
    version="1.1"
    id="svg5"
    inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
-   sodipodi:docname="maison.svg"
+   sodipodi:docname="maison2.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -23,9 +23,9 @@
      inkscape:pagecheckerboard="0"
      inkscape:document-units="mm"
      showgrid="true"
-     inkscape:zoom="0.7500982"
-     inkscape:cx="39.328184"
-     inkscape:cy="452.60741"
+     inkscape:zoom="1.5001964"
+     inkscape:cx="408.94646"
+     inkscape:cy="286.29585"
      inkscape:window-width="1920"
      inkscape:window-height="1027"
      inkscape:window-x="-8"
@@ -40,7 +40,77 @@
        id="grid2252" />
   </sodipodi:namedview>
   <defs
-     id="defs2" />
+     id="defs2">
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter5074"
+       x="-0.30181518"
+       y="-0.35840552"
+       width="1.7030916"
+       height="1.9530315">
+      <feFlood
+         flood-opacity="0.658824"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood5064" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite5066" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="3"
+         result="blur"
+         id="feGaussianBlur5068" />
+      <feOffset
+         dx="2.5"
+         dy="5"
+         result="offset"
+         id="feOffset5070" />
+      <feComposite
+         in="SourceGraphic"
+         in2="offset"
+         operator="over"
+         result="fbSourceGraphic"
+         id="feComposite5072" />
+      <feColorMatrix
+         result="fbSourceGraphicAlpha"
+         in="fbSourceGraphic"
+         values="0 0 0 -1 0 0 0 0 -1 0 0 0 0 -1 0 0 0 0 1 0"
+         id="feColorMatrix5094" />
+      <feFlood
+         id="feFlood5096"
+         flood-opacity="0.658824"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         in="fbSourceGraphic" />
+      <feComposite
+         in2="fbSourceGraphic"
+         id="feComposite5098"
+         in="flood"
+         operator="in"
+         result="composite1" />
+      <feGaussianBlur
+         id="feGaussianBlur5100"
+         in="composite1"
+         stdDeviation="3"
+         result="blur" />
+      <feOffset
+         id="feOffset5102"
+         dx="2.5"
+         dy="5"
+         result="offset" />
+      <feComposite
+         in2="offset"
+         id="feComposite5104"
+         in="fbSourceGraphic"
+         operator="over"
+         result="composite2" />
+    </filter>
+  </defs>
   <g
      inkscape:label="Calque 1"
      inkscape:groupmode="layer"
@@ -514,76 +584,6 @@
            y="200.57169">%HR</tspan></text>
     </g>
     <g
-       id="device-2"
-       transform="matrix(0.36842104,0,0,0.36842104,118.72827,43.168859)"
-       inkscape:label="#device-2">
-      <rect
-         style="fill:#000000;fill-opacity:0.109804;stroke:#000069;stroke-width:1.545;stroke-linejoin:round;stroke-miterlimit:4.9;stroke-dasharray:none;stroke-opacity:0.535484"
-         id="rect25740-4"
-         width="50.270832"
-         height="42.333332"
-         x="37.041668"
-         y="171.97917" />
-      <rect
-         style="mix-blend-mode:normal;fill:#000000;fill-opacity:0.112903;stroke:#000069;stroke-width:1.54499;stroke-linejoin:round;stroke-miterlimit:4.9;stroke-dasharray:none;stroke-opacity:0.535484"
-         id="rect3542-9"
-         width="44.979168"
-         height="15.874994"
-         x="39.687504"
-         y="174.625" />
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
-         x="43.215515"
-         y="186.08981"
-         id="temp-3"><tspan
-           sodipodi:role="line"
-           id="tspan4490-4"
-           style="stroke-width:0.264583"
-           x="43.215515"
-           y="186.08981">20.5</tspan></text>
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-weight:normal;font-size:5.65103px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.211913"
-         x="69.608765"
-         y="182.05086"
-         id="text10136-2"><tspan
-           sodipodi:role="line"
-           id="tspan10134-0"
-           style="font-size:5.65103px;stroke-width:0.211913"
-           x="69.608765"
-           y="182.05086">°C</tspan></text>
-      <rect
-         style="fill:#000000;fill-opacity:0.109804;stroke:#000069;stroke-width:1.545;stroke-linejoin:round;stroke-miterlimit:4.9;stroke-dasharray:none;stroke-opacity:0.535484"
-         id="rect3542-3-4"
-         width="44.979172"
-         height="15.874994"
-         x="39.6875"
-         y="193.14583" />
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
-         x="43.215511"
-         y="204.61064"
-         id="hygro-5"><tspan
-           sodipodi:role="line"
-           id="tspan4490-6-0"
-           style="stroke-width:0.264583"
-           x="43.215511"
-           y="204.61064">78.9</tspan></text>
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-weight:normal;font-size:5.65103px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.211913"
-         x="68.550423"
-         y="200.57169"
-         id="text10136-5-6"><tspan
-           sodipodi:role="line"
-           id="tspan10134-4-4"
-           style="font-size:5.65103px;stroke-width:0.211913"
-           x="68.550423"
-           y="200.57169">%HR</tspan></text>
-    </g>
-    <g
        id="device-7"
        transform="matrix(0.36842104,0,0,0.36842104,130.28639,-6.2664484)"
        inkscape:label="#device-7">
@@ -652,6 +652,79 @@
            style="font-size:5.65103px;stroke-width:0.211913"
            x="68.550423"
            y="200.57169">%HR</tspan></text>
+    </g>
+    <g
+       id="g5136">
+      <g
+         id="device-2"
+         transform="matrix(0.36842104,0,0,0.36842104,119.61952,43.586625)"
+         inkscape:label="#device-2">
+        <rect
+           style="fill:#000000;fill-opacity:0.109804;stroke:#000069;stroke-width:1.545;stroke-linejoin:round;stroke-miterlimit:4.9;stroke-dasharray:none;stroke-opacity:0.535484;filter:url(#filter5074)"
+           id="rect25740-4"
+           width="50.270832"
+           height="42.333332"
+           x="37.041668"
+           y="171.97917" />
+        <rect
+           style="mix-blend-mode:normal;fill:#000000;fill-opacity:0.112903;stroke:#000069;stroke-width:1.54499;stroke-linejoin:round;stroke-miterlimit:4.9;stroke-dasharray:none;stroke-opacity:0.535484"
+           id="rect3542-9"
+           width="44.979168"
+           height="15.874994"
+           x="39.687504"
+           y="174.625" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+           x="43.215515"
+           y="186.08981"
+           id="temp-3"><tspan
+             sodipodi:role="line"
+             id="tspan4490-4"
+             style="stroke-width:0.264583"
+             x="43.215515"
+             y="186.08981">20.5</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-weight:normal;font-size:5.65103px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.211913"
+           x="69.608765"
+           y="182.05086"
+           id="text10136-2"><tspan
+             sodipodi:role="line"
+             id="tspan10134-0"
+             style="font-size:5.65103px;stroke-width:0.211913"
+             x="69.608765"
+             y="182.05086">°C</tspan></text>
+        <rect
+           style="fill:#000000;fill-opacity:0.109804;stroke:#000069;stroke-width:1.545;stroke-linejoin:round;stroke-miterlimit:4.9;stroke-dasharray:none;stroke-opacity:0.535484"
+           id="rect3542-3-4"
+           width="44.979172"
+           height="15.874994"
+           x="39.6875"
+           y="193.14583" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+           x="43.215511"
+           y="204.61064"
+           id="hygro-5"><tspan
+             sodipodi:role="line"
+             id="tspan4490-6-0"
+             style="stroke-width:0.264583"
+             x="43.215511"
+             y="204.61064">78.9</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-weight:normal;font-size:5.65103px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.211913"
+           x="68.550423"
+           y="200.57169"
+           id="text10136-5-6"><tspan
+             sodipodi:role="line"
+             id="tspan10134-4-4"
+             style="font-size:5.65103px;stroke-width:0.211913"
+             x="68.550423"
+             y="200.57169">%HR</tspan></text>
+      </g>
     </g>
   </g>
 </svg>

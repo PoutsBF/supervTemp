@@ -6,11 +6,12 @@ Pour l'acquisition instantanée, un scan permet d'avoir en réponse un bloc cont
 Des exemples de découvertes sont (crédits) :
 - [GoveeBTTempLogger](https://github.com/wcbonner/GoveeBTTempLogger)
 - [home is where you hang your hack](https://github.com/home-is-where-you-hang-your-hack/sensor.goveetemp_bt_hci) (protocole)
-- [GoveeWatcher](https://github.com/Thrilleratplay/GoveeWatcher)
-- [site Govee](https://eu.govee.com/collections/home-improvement)
+- [GoveeWatcher](https://github.com/Thrilleratplay/GoveeWatcher) (protocole)
 - [Govee BT client](https://github.com/asednev/govee-bt-client)
 - [GoveeTemperatureAndHumidity](https://github.com/neilsheps/GoveeTemperatureAndHumidity)
 - [bluetooth-temperature-sensors](https://github.com/deepcoder/bluetooth-temperature-sensors)
+- [homebridge-plugin-govee](https://github.com/asednev/homebridge-plugin-govee)
+- [site Govee](https://eu.govee.com/collections/home-improvement)
 
 Je suis intéressé par l'acquisition longue durée mais les informations sont difficiles à extraire (l'assistance Govee ne fournit pas les informations, une observation par WireShark sera nécessaire).
 
