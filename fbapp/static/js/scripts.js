@@ -3,16 +3,55 @@ $(function() {
 });
 
 var socket = new WebSocket('ws://' + document.domain + ':' + location.port);
-socket.on('connect', function() {
-        // we emit a connected message to let knwo the client that we are connected.
-    socket.send('client_connected', {data: 'New client!'});
-});
 
-socket.on('my_response', function (data) {
-    console.send('message from backend ' + data);
-});
+socket.onopen = function (e) { socket.send('{\"Connect\":\"' + new Date() + '\"}'); };
+socket.onclose = function(e) { alert("closed"); }
+socket.onerror = function (error) { console.log('WebSocket Error ', error); };
 
-socket.on('majData', function (data) {
+socket.onmessage = function (event) 
+{
+    try
+    {
+        var msg = JSON.parse(event.data);
+    }
+    catch (e)
+    {
+        console.error("Parsing error:", e);
+        console.log(event.data);
+    }
+    var text = "";
+    if (typeof msg.message != 'undefined')
+    {
+        switch(msg.message)
+        {
+            case "majDataInst" : majDataInst(msg.data); break;            
+        }
+    }
+    // {    // support à effacer au nettoyage
+
+    //     var time = new Date(msg.stamp);
+    //     var timeStr = time.toLocaleTimeString();
+
+    //     text = "<b>donnée à " + timeStr + "</b><br>";
+    //     text += "<b>température " + msg.temp + " °C</b><br>";
+    //     text += "<b>hygrométrie " + msg.hydr + " %HR</b><br>";
+    //     text += "<b>pression " + msg.pression + " hPa</b><br>";
+    //     text += "<b>qualité air " + msg.gas_r + " Ohm</b><br>";
+
+    //     document.jaugeTEMP.series[0].setData([msg.temp], true);
+    //     document.jaugeHR.series[0].setData([msg.hydr], true);
+    //     document.jaugePRESSION.series[0].setData([msg.pression], true);
+    //     document.jaugeGAZ.series[0].setData([msg.gas_r], true);
+
+    //     if (text.length) {
+    //         document.getElementById("display").innerHTML = text;
+    //     }
+    // }
+    console.log('Server: ', event.data);
+};
+
+function majDataInst(data) 
+{
     for (item of data)
     {
         console.log('message from backend ' + item);
@@ -21,11 +60,7 @@ socket.on('majData', function (data) {
         $('#dv-' + item[0] + ' [name="bat"]').title = "batterie : " + item[5];
         $('#dv-' + item[0] + ' [name="bat"]').alt = "batterie : " + item[5];      
     }
-});
-
-socket.on('alert', function (data) {
-    alert('Alert Message!! ' + data);
-});
+};
 
 function json_button() {
     socket.send('json_button', '{"message": "test"}');
