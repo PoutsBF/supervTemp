@@ -25,7 +25,7 @@ L'objectif de ce projet est donc :
 - Intégrer les températures dans un plan
 - mettre en place un graphe paramétré 
 > 1 an / 1 mois / 1 semaine / 24h
-- 
+- modifier les icones de batterie en réception des mises à jour
 
 ## Sources / bibliothèques
 ### Flask

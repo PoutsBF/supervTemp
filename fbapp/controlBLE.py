@@ -42,6 +42,7 @@ def detection_callback(device, advertisement_data):
             encoded_data = int(advertisement_data.manufacturer_data[60552].hex()[2:8], 16)
             
             devices[mac]["name"] = advertisement_data.local_name
+            print(advertisement_data.local_name)
 
             devices[mac]["temperature"] = decode_temp_in_c(encoded_data)
             devices[mac]["hygrometrie"] = decode_humidity(encoded_data)

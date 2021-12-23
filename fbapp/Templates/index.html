@@ -11,7 +11,7 @@
     <meta name="author" content="Stéphane Lepoutère">
 
     <!-- fontAwesome pour les boutons Core CSS -->
-    <link href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
 
     <!-- Bootstrap Core CSS -->
     <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
@@ -21,9 +21,6 @@
 
     <!-- Theme CSS -->
     <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
-
-	<!-- Script pour les web sockets -->
-	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.0/socket.io.min.js"></script>
 
 </head>
   <body>
@@ -39,7 +36,45 @@
 	</div>
 	<div class="row">
 		<div class="col-md-12">
-			<embed src="{{ url_for('static', filename='svg/maison.svg') }}" type="image/svg+xml" /> 
+			<svg id="svgMaison">
+				<rect
+				style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-opacity:1;image-rendering:auto"
+				id="rect35"
+				width="164px" height="100px" x="0px" y="0px" />
+			 <rect
+				style="fill:none;stroke:#000000;stroke-width:1px;stroke-opacity:1"
+				id="rect2542"
+				width="31px" height="29px" x="0px"y="34px" />
+			 <path
+				style="fill:none;stroke:#000000;stroke-width:1pxpx;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+				d="M 0,34 H 31 v 7 H 74 V 0 H 0 V 34"
+				id="path2679" />
+			 <path
+				style="fill:none;stroke:#000000;stroke-width:1pxpx;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+				d="M 31,55 H 45 V 100 H 0 V 63 H 31 v -7"
+				id="path2681" />
+			 <path
+				style="fill:none;stroke:#000000;stroke-width:1pxpx;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+				d="M 74,0 H 90 V 24 H 74 Z"
+				id="path2683" />
+			 <path
+				style="fill:none;stroke:#000000;stroke-width:1pxpx;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+				d="M 87,24 V 42 H 74 V 24 Z"
+				id="path2685" />
+			 <path
+				style="fill:none;stroke:#000000;stroke-width:1pxpx;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+				d="M 90,55 V 100 H 45 V 55 Z"
+				id="path2687" />
+			 <path
+				style="fill:none;stroke:#000000;stroke-width:1pxpx;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+				d="M 103,0 V 55 H 90 V 100 H 164 V 55 H 137 V 0 Z"
+				id="path2689" />
+			 <rect
+				style="fill:none;stroke:#000000;stroke-width:1px;stroke-opacity:1"
+				id="rect3099"
+				width="50" height="23" x="108" y="100" />
+			</svg>
+			<embed src="{{ url_for('static', filename='svg/maison.svg') }}" type="image/svg+xml" id="svgMaison"/> 
 		</div>
 	</div>
 	<div class="row">
@@ -52,19 +87,20 @@
 		<div class="col-md-12">
 			<div class="card-deck">
 			{%- for pos in range(0, 8) %}
-			<div class="card text-center">
+			<div id="dv-{{ liste_data[pos][0] }}" class="card text-center">
 					<h5 class="card-header">
 					{{ liste_data[pos][2] }}
 				</h5>
 				<div class="card-body">
 					<button type="button" class="btn btn-danger">
-						{{ liste_data[pos][3] }}<span class="badge badge-light">°C</span>
+						<div name="temp">{{ liste_data[pos][3] }}</div><span class="badge badge-light">°C</span>
 					</button> 
 					<button type="button" class="btn btn-primary">
-						{{ liste_data[pos][4] }}<span class="badge badge-light">%HR</span>
+						<div name="hygro">{{ liste_data[pos][4] }}</div><span class="badge badge-light">%HR</span>
 					</button>
 					<div class="img-battery">
-						<img 						
+						<img 				
+						name="batt"		
 						src="{{ url_for('static', filename='img/battery_level_w50px.png') }}" 
 						alt="batterie : {{ liste_data[pos][5] }} %"
 						title="batterie : {{ liste_data[pos][5] }} %"
@@ -137,6 +173,9 @@
 		</div>
 	</div>
 </div>
+
+	<!-- Script pour les web sockets -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.4/socket.io.min.js"></script>
 
     <!-- Plugin JavaScript -->
     <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>

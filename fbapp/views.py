@@ -15,13 +15,13 @@ app.config.from_object('config')
 socketio = SocketIO(app, async_mode=async_mode)
 thread_lock = Lock()
 
-from .utils import find_content, BaseThread
+from .utils import async_majBLE, find_content, BaseThread
 
 @app.route('/')
 @app.route('/index/')
 def index():
-    req1 = find_content("all")
-    req2 = find_content("instant")
+    req1 = find_content("instant")
+    req2 = find_content("all")
 
     # if 'img' in request.args:
     #     img = request.args['img']
@@ -48,11 +48,10 @@ def index():
 @socketio.on('client_connected')
 def handle_client_connect_event(json):
     print('received json: {0}'.format(str(json)))
-    thread = BaseThread(
-        name='test',
-        callback=cb_retour,
-    )
-    thread.start()
+    req = async_majBLE()
+    emit('majData', req, broadcast=True)
+    print(req)
+
 
 @socketio.on('json_button', namespace=None)
 def handle_json_button(*args):
@@ -89,7 +88,7 @@ def disconnect_request():
          callback=can_disconnect)
 
 def cb_retour(req):
-    asyncio. (emit('maj_data', req))
+    send('maj_data', req, json=True, broadcast=True)
 
 if __name__ == "__main__":
     app.run()

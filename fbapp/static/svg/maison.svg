@@ -45,51 +45,7 @@
      inkscape:label="Calque 1"
      inkscape:groupmode="layer"
      id="layer1">
-    <rect
-       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.278633;stroke-opacity:1;image-rendering:auto"
-       id="rect35"
-       width="164.04166"
-       height="100.54167"
-       x="0.083554357"
-       y="0.41775861" />
-    <rect
-       style="fill:none;stroke:#000000;stroke-width:0.264583;stroke-opacity:1"
-       id="rect2542"
-       width="31.75"
-       height="29.104166"
-       x="0.083554357"
-       y="34.813591" />
-    <path
-       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="M 0.08355426,34.813592 H 31.833554 v 7.9375 H 74.166887 V 0.41775857 H 0.08355426 V 34.813592"
-       id="path2679" />
-    <path
-       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="M 31.833554,55.980259 H 45.06272 V 100.95942 H 0.08355426 V 63.917759 H 31.833554 v -7.9375"
-       id="path2681" />
-    <path
-       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="M 74.166887,0.41775857 H 90.041888 V 24.230259 H 74.166887 Z"
-       id="path2683" />
-    <path
-       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="M 87.396058,24.230259 V 42.751092 H 74.166887 V 24.230259 Z"
-       id="path2685" />
-    <path
-       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="M 90.041888,55.980259 V 100.95942 H 45.06272 V 55.980259 Z"
-       id="path2687" />
-    <path
-       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="M 103.27104,0.41775857 V 55.980259 H 90.041888 V 100.95942 H 164.1252 V 55.980259 H 137.66687 V 0.41775857 Z"
-       id="path2689" />
-    <rect
-       style="fill:none;stroke:#000000;stroke-width:0.264583;stroke-opacity:1"
-       id="rect3099"
-       width="50.270832"
-       height="23.8125"
-       x="108.56271"
-       y="100.95942" />
+    
     <g
        id="device-3"
        transform="matrix(0.36842104,0,0,0.36842104,130.28639,-34.256578)"
