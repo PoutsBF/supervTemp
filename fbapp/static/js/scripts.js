@@ -2,9 +2,13 @@ $(function() {
     $('#table').bootstrapTable()
 });
 
-var socket = new WebSocket('ws://' + document.domain + ':' + location.port);
+var socket = new WebSocket('ws://' + document.domain + ':' + location.port + '/ws');
 
-socket.onopen = function (e) { socket.send('{\"Connect\":\"' + new Date() + '\"}'); };
+socket.onopen = function (e) 
+{ 
+    console.log("WebSocket : connecté ");
+    socket.send('{\"Connect\":\"' + new Date() + '\"}'); 
+};
 socket.onclose = function(e) { alert("closed"); }
 socket.onerror = function (error) { console.log('WebSocket Error ', error); };
 
@@ -47,18 +51,17 @@ socket.onmessage = function (event)
     //         document.getElementById("display").innerHTML = text;
     //     }
     // }
-    console.log('Server: ', event.data);
 };
 
 function majDataInst(data) 
 {
-    for (item of data)
+    for (let item in data)
     {
-        console.log('message from backend ' + item);
-        $('#dv-' + item[0] + ' [name="temp"]')[0].innerHTML = item[3];
-        $('#dv-' + item[0] + ' [name="hygro"]')[0].innerHTML = item[4];
-        $('#dv-' + item[0] + ' [name="bat"]').title = "batterie : " + item[5];
-        $('#dv-' + item[0] + ' [name="bat"]').alt = "batterie : " + item[5];      
+        $('#dv-' + item + ' [name="timeS"]').text(data[item][1]);
+        $('#dv-' + item + ' [name="temp"]').text(data[item][3]);
+        $('#dv-' + item + ' [name="hygro"]').text(data[item][4]);
+        $('#dv-' + item + ' [name="bat"]').attr("title", "batterie : " +  data[item][5].toString() + " %");
+        $('#dv-' + item + ' [name="bat"]').attr("alt", "batterie : " + data[item][5].toString() + " %");   
     }
 };
 

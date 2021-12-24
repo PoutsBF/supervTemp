@@ -1,12 +1,14 @@
 import random
 import logging as lg
 from sqlalchemy import func
+from sqlalchemy.orm.attributes import QueryableAttribute
 from datetime import date, datetime, time, timedelta
 import threading
 import asyncio
 
 from .models  import db, data_environnement, capteurs, init_models
 from .controlBLE import scanner_loop
+import json
 
 """
 ------------ Décoration pour les variables statiques -------------
@@ -52,9 +54,6 @@ def find_content(etendue):
 
     else:
         pass
-
-    # col = req[0].keys
-    # print(req[0].keys())
 
     retour = []
     for line in req:
@@ -122,16 +121,142 @@ def async_majBLE():
             .where(data_environnement.idCapteur==capteurs.id)\
             .all()
     # Met en forme les données pour l'affichage
-    retour = []
+    retour = {}
+    pos = 1
     for line in req:
-        retour_ligne = []
+        retour[str(pos)] = {}
+        col = 0
         for item in line:
+            # nom_col = req[0].keys()._keys[col] // nom de colonne, mais il en manque une !!
             if(type(item) is float):    # Affichage des valeurs flottantes à 1 décimales
-                retour_ligne.append("{:.1f}".format(item))
+                retour[str(pos)][str(col)] = "{:.1f}".format(item)
             elif(type(item) is datetime): # Affichage jour/mois/année heure:minute
-                retour_ligne.append(item.strftime("%d/%m/%y %H:%M"))
+                retour[str(pos)][str(col)] = item.strftime("%d/%m/%y %H:%M")
             else:        # pas de changement
-                retour_ligne.append(item)
-        retour.append(retour_ligne)
+                retour[str(pos)][str(col)] = item
+            col += 1
+        pos += 1
 
-    return retour
+    retour_complet = {}
+    retour_complet["data"] = retour
+    retour_complet["message"] = "majDataInst" 
+
+    # col = req[0].keys
+    # print(req[0].keys())
+    
+    retour_json = json.dumps(retour_complet)
+
+    return retour_json
+
+
+""" ----------------------------------------------------------------------------------------
+"""
+def to_dict(self, show=None, _hide=None, _path=None):
+    """Return a dictionary representation of this model."""
+
+    show = show or []
+    _hide = _hide or []
+
+    hidden = self._hidden_fields if hasattr(self, "_hidden_fields") else []
+    default = self._default_fields if hasattr(self, "_default_fields") else []
+    default.extend(['id', 'modified_at', 'created_at'])
+
+    if not _path:
+        _path = self.__tablename__.lower()
+
+        def prepend_path(item):
+            item = item.lower()
+            if item.split(".", 1)[0] == _path:
+                return item
+            if len(item) == 0:
+                return item
+            if item[0] != ".":
+                item = ".%s" % item
+            item = "%s%s" % (_path, item)
+            return item
+
+        _hide[:] = [prepend_path(x) for x in _hide]
+        show[:] = [prepend_path(x) for x in show]
+
+    columns = self.__table__.columns.keys()
+    relationships = self.__mapper__.relationships.keys()
+    properties = dir(self)
+
+    ret_data = {}
+
+    for key in columns:
+        if key.startswith("_"):
+            continue
+        check = "%s.%s" % (_path, key)
+        if check in _hide or key in hidden:
+            continue
+        if check in show or key in default:
+            ret_data[key] = getattr(self, key)
+
+    for key in relationships:
+        if key.startswith("_"):
+            continue
+        check = "%s.%s" % (_path, key)
+        if check in _hide or key in hidden:
+            continue
+        if check in show or key in default:
+            _hide.append(check)
+            is_list = self.__mapper__.relationships[key].uselist
+            if is_list:
+                items = getattr(self, key)
+                if self.__mapper__.relationships[key].query_class is not None:
+                    if hasattr(items, "all"):
+                        items = items.all()
+                ret_data[key] = []
+                for item in items:
+                    ret_data[key].append(
+                        item.to_dict(
+                            show=list(show),
+                            _hide=list(_hide),
+                            _path=("%s.%s" % (_path, key.lower())),
+                        )
+                    )
+            else:
+                if (
+                    self.__mapper__.relationships[key].query_class is not None
+                    or self.__mapper__.relationships[key].instrument_class
+                    is not None
+                ):
+                    item = getattr(self, key)
+                    if item is not None:
+                        ret_data[key] = item.to_dict(
+                            show=list(show),
+                            _hide=list(_hide),
+                            _path=("%s.%s" % (_path, key.lower())),
+                        )
+                    else:
+                        ret_data[key] = None
+                else:
+                    ret_data[key] = getattr(self, key)
+
+    for key in list(set(properties) - set(columns) - set(relationships)):
+        if key.startswith("_"):
+            continue
+        if not hasattr(self.__class__, key):
+            continue
+        attr = getattr(self.__class__, key)
+        if not (isinstance(attr, property) or isinstance(attr, QueryableAttribute)):
+            continue
+        check = "%s.%s" % (_path, key)
+        if check in _hide or key in hidden:
+            continue
+        if check in show or key in default:
+            val = getattr(self, key)
+            if hasattr(val, "to_dict"):
+                ret_data[key] = val.to_dict(
+                    show=list(show),
+                    _hide=list(_hide),
+                    _path=('%s.%s' % (_path, key.lower())),
+                )
+            else:
+                try:
+                    ret_data[key] = json.loads(json.dumps(val))
+                except:
+                    pass
+
+    return ret_data

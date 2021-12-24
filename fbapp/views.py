@@ -1,17 +1,40 @@
 # -*- coding: utf-8 -*-
 
-import asyncio
-import websockets
-from flask import Flask, render_template, url_for, request, copy_current_request_context, session
+from flask_sock import Sock
 
+from flask import Flask, render_template, url_for, request, copy_current_request_context, session
 
 from time import strftime
 import logging as lg
 
 app = Flask(__name__)
 app.config.from_object('config')
+sockets = Sock(app)
 
-from .utils import async_majBLE, find_content, BaseThread
+from .utils import async_majBLE, find_content
+
+clients = {}
+@sockets.route('/ws')
+def echo_socket(ws):
+    peerName = ws.environ['werkzeug.socket'].getpeername()
+    while ws.connected:
+        if(peerName in clients):
+            clients[peerName]["nbMessages"] += 1
+        else:
+            clients[peerName] = {}
+            clients[peerName]["nbMessages"] = 0
+
+        message = ws.receive()
+        print(message)
+        req = async_majBLE()
+        print(req)
+        ws.send(req)
+
+    clients.remove(peerName)
+    print(ws.close_message + ws.close_reason)
+    # print(type(ws))
+    # print(ws.environ['werkzeug.socket'].getsockname() + ws.environ['werkzeug.socket'].getpeername())
+
 
 @app.route('/')
 @app.route('/index/')
@@ -19,31 +42,7 @@ def index():
     req1 = find_content("instant")
     req2 = find_content("all")
 
-    # if 'img' in request.args:
-    #     img = request.args['img']
-    #     og_url = url_for('index', img=img, _external=True)
-    #     og_image = url_for('static', filename=img, _external=True)
-    # else:
-    #     og_url = url_for('index', _external=True)
-    #     og_image = url_for('static', filename='tmp/sample.jpg', _external=True)
-
-    # description = "Toi, tu sais comment utiliser la console ! "
-    # page_title = "Le test ultime"
-
-    # og_description = "Découvre qui tu es vraiment en faisant le test ultime !"
     return render_template('index.html', liste_data=req1, liste_all=req2)
-                        #   user_name='Julio',
-                        #   user_image=url_for('static', filename='img/profile.png'),
-                        #   description=description,
-                        #   blur=True,
-                        #   page_title=page_title,
-                        #   og_url=og_url,
-                        #   og_image=og_image,
-                        #   og_description=og_description)
-
-@ws.on_raw_message
-def raw_message_handler(message):
-    print(message)
 
 # @socketio.on('client_connected')
 # def handle_client_connect_event(json):
@@ -90,5 +89,11 @@ def raw_message_handler(message):
 # def cb_retour(req):
 #     send('maj_data', req, json=True, broadcast=True)
 
+
+
 if __name__ == "__main__":
     app.run()
+
+class Client():
+    def __init__(self) -> None:
+        pass

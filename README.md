@@ -11,6 +11,7 @@ Des exemples de découvertes sont (crédits) :
 - [GoveeTemperatureAndHumidity](https://github.com/neilsheps/GoveeTemperatureAndHumidity)
 - [bluetooth-temperature-sensors](https://github.com/deepcoder/bluetooth-temperature-sensors)
 - [homebridge-plugin-govee](https://github.com/asednev/homebridge-plugin-govee)
+- [analyse](https://wimsworld.wordpress.com/2020/07/01/govee-gvh5075-thermometer-hygrometer/)
 - [site Govee](https://eu.govee.com/collections/home-improvement)
 
 Je suis intéressé par l'acquisition longue durée mais les informations sont difficiles à extraire (l'assistance Govee ne fournit pas les informations, une observation par WireShark sera nécessaire).
@@ -27,18 +28,31 @@ L'objectif de ce projet est donc :
 > 1 an / 1 mois / 1 semaine / 24h
 - modifier les icones de batterie en réception des mises à jour
 
+
 ## Sources / bibliothèques
 ### Flask
 Web serveur 
 - [documentation Flask](https://flask.palletsprojects.com/en/2.0.x/)
+- [tutorial Flask](https://www.digitalocean.com/community/tutorials/how-to-make-a-web-application-using-flask-in-python-3-fr)
 
 ### Flask-SQLalchemy
 ORM (Object-Relational Mapping) pour l'accès à la BDD
 - [documentation Flask SQL Alchemy](https://flask-sqlalchemy.palletsprojects.com/en/2.x/)
 
-### Flask-SocketIO
+### WebSocket
 Gestion des webservices (pour la mise à jour des champs en asynchrone et dans le cas de mise à jour)
-- [documentation Flask Socket IO](https://flask-socketio.readthedocs.io/)
+#### Flask-SocketIO
+- ~~[documentation Flask Socket IO](https://flask-socketio.readthedocs.io/)~~
+gestion d'une communication en mode polling, ne répond pas à mes attentes (surcharge du médium de communication, fait tourner du code inutilement sur le client !)
+
+#### Flask-Sockets
+- ~~[Flask Sockets](https://github.com/heroku-python/flask-sockets)~~
+- ~~[documentation flask-sockets](https://devcenter.heroku.com/articles/python-websockets)~~
+Premier essai non concluant. Après changement, c'était l'adresse en javascript qui était mauvaise.
+
+#### Flask-SocketIO
+- ~~[Flask Sockets](https://github.com/heroku-python/flask-sockets)~~
+gestion d'une communication en mode polling, ne répond pas à mes attentes (surcharge du médium de communication, fait tourner du code inutilement sur le client !)
 
 ### Bleak (Bluetooth)
 Interface windows et raspbian pour l'utilisation du Bluetooth
