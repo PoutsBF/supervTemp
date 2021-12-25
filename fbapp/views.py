@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from flask_sock import Sock
-
+from flask_apscheduler import APScheduler
 from flask import Flask, render_template, url_for, request, copy_current_request_context, session
 
 from time import strftime
@@ -11,7 +11,18 @@ app = Flask(__name__)
 app.config.from_object('config')
 sockets = Sock(app)
 
-from .utils import async_majBLE, find_content
+# scheduler = APScheduler()
+
+# scheduler.init_app(app)
+# scheduler.start()
+
+from .utils import async_majBLE, find_content, scan
+
+# @scheduler.task("interval", id="scan_timer", seconds=120, misfire_grace_time=900)
+# def job1():
+#     print("lancement timer scan")
+#     scan(fin_scan)
+#     print("timer scan exécuté")
 
 clients = {}
 @sockets.route('/ws')
@@ -23,6 +34,7 @@ def echo_socket(ws):
         else:
             clients[peerName] = {}
             clients[peerName]["nbMessages"] = 0
+#            clients[peerName]["ws"] = ws
 
         message = ws.receive()
         print(message)
@@ -35,6 +47,10 @@ def echo_socket(ws):
     # print(type(ws))
     # print(ws.environ['werkzeug.socket'].getsockname() + ws.environ['werkzeug.socket'].getpeername())
 
+def fin_scan():
+    for client in clients:
+        req = async_majBLE()
+        clients[client]["ws"].send(req)
 
 @app.route('/')
 @app.route('/index/')

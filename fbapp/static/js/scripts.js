@@ -159,21 +159,22 @@ valeur = 10;
 
 var_svg = document.getElementById("svgMaison");
 
-for(i=0; i<8; i++)
-{
-    thermometre = document.createElement("g");
-    rectangle_cadre = document.createElement("rect");
-    rectangle_cadre.setAttribute("x", position_thermometres[i].pos_x.toString());
-    rectangle_cadre.setAttribute("y", position_thermometres[i].pos_y.toString());
-    rectangle_temp = document.createElement("rect");
-    rectangle_hydro = document.createElement("rect");
-    text_temp = document.createElement("rect");
-    text_hydro = document.createElement("rect");
-    
-    thermometre.appendChild(rectangle_cadre);
-    thermometre.appendChild(rectangle_temp);
-    thermometre.appendChild(rectangle_hydro);
-    thermometre.appendChild(rectangle_temp);
-    thermometre.appendChild(rectangle_hydro);
-    var_svg.appendChild(thermometre);
-}
+// thermometre = document.createElement("g");  //thermomètre
+// rectangle_cadre = document.createElement("rect");
+// rectangle_cadre.setAttribute("x", position_thermometres[i].pos_x.toString());
+// rectangle_cadre.setAttribute("y", position_thermometres[i].pos_y.toString());
+// rectangle_temp = document.createElement("rect");
+// rectangle_hydro = document.createElement("rect");
+// text_temp = document.createElement("rect");
+// text_hydro = document.createElement("rect");
+
+// thermometre.appendChild(rectangle_cadre);
+// thermometre.appendChild(rectangle_temp);
+// thermometre.appendChild(rectangle_hydro);
+// thermometre.appendChild(rectangle_temp);
+// thermometre.appendChild(rectangle_hydro);
+
+// for(i=0; i<8; i++)
+// {
+//     var_svg.appendChild(thermometre);
+// }

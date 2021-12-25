@@ -83,13 +83,11 @@ class BaseThread(threading.Thread):
         if self.callback is not None:
             self.callback(result)
 
-# example using BaseThread with callback
-
-def async_majBLE():
-# Met à jour les données en faisant un scan Bluetooth
-# Enregistre les données dans la base de données
-# Met en forme les données pour les renvoyer pour affichage
-
+""" ---------------------------------------------------------------------------
+    Timer pour faire un refresh des températures toutes les 15mn
+"""
+def scan(callback):
+#    threading.Timer((2*60.0), scan, args=[callback]).start() # bloque l'émission des messages web server
     # Lance un scan, tableau de données en retour
     data_recepts = asyncio.run(scanner_loop())
 
@@ -109,6 +107,32 @@ def async_majBLE():
 
     # A l'issue, enregistre les requêtes dans la base
     db.session.commit()
+    callback()
+
+def async_majBLE():
+# Met à jour les données en faisant un scan Bluetooth
+# Enregistre les données dans la base de données
+# Met en forme les données pour les renvoyer pour affichage
+
+    # # Lance un scan, tableau de données en retour
+    # data_recepts = asyncio.run(scanner_loop())
+
+    # # Boucle pour itérer les données reçues
+    # for mac in data_recepts:
+    #     # Recherche l'ID dans la base en fonction du nom du capteur
+    #     cCapteur = capteurs.query.filter(capteurs.name == data_recepts[mac]["name"]).all()
+    #     idCapteur = cCapteur[0].id # sélectionne spécifiquement l'id
+    #     # Prépare les données au format de la table de la base de données
+    #     nvData = data_environnement(idCapteur=idCapteur, 
+    #                                 timeStamp=data_recepts[mac]["timeStamp"], 
+    #                                 temperature=data_recepts[mac]["temperature"], 
+    #                                 hygrometrie=data_recepts[mac]["hygrometrie"], 
+    #                                 batterie=data_recepts[mac]["batterie"])
+    #     # Ajoute les données dans la base
+    #     db.session.add(nvData)
+
+    # # A l'issue, enregistre les requêtes dans la base
+    # db.session.commit()
 
     # Requête les dernières données sur chaques capteurs
     req = db.session.query(data_environnement.idCapteur, \
