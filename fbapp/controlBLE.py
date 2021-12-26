@@ -5,8 +5,6 @@ import asyncio
 from datetime import datetime
 
 from bleak import BleakScanner
-# from bleson import UUID16
-# from bleson.core.types import UUID128
 
 # https://macaddresschanger.com/bluetooth-mac-lookup/A4%3AC1%3A38
 # OUI Prefix	Company

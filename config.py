@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+#! python3
+
 import os
 
 SECRET_KEY = "I+z9K>6H'g\\p>R?^W'j44r{S"

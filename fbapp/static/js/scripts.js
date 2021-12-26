@@ -14,6 +14,7 @@ socket.onerror = function (error) { console.log('WebSocket Error ', error); };
 
 socket.onmessage = function (event) 
 {
+    console.log("réception message websocket");
     try
     {
         var msg = JSON.parse(event.data);
@@ -31,30 +32,11 @@ socket.onmessage = function (event)
             case "majDataInst" : majDataInst(msg.data); break;            
         }
     }
-    // {    // support à effacer au nettoyage
-
-    //     var time = new Date(msg.stamp);
-    //     var timeStr = time.toLocaleTimeString();
-
-    //     text = "<b>donnée à " + timeStr + "</b><br>";
-    //     text += "<b>température " + msg.temp + " °C</b><br>";
-    //     text += "<b>hygrométrie " + msg.hydr + " %HR</b><br>";
-    //     text += "<b>pression " + msg.pression + " hPa</b><br>";
-    //     text += "<b>qualité air " + msg.gas_r + " Ohm</b><br>";
-
-    //     document.jaugeTEMP.series[0].setData([msg.temp], true);
-    //     document.jaugeHR.series[0].setData([msg.hydr], true);
-    //     document.jaugePRESSION.series[0].setData([msg.pression], true);
-    //     document.jaugeGAZ.series[0].setData([msg.gas_r], true);
-
-    //     if (text.length) {
-    //         document.getElementById("display").innerHTML = text;
-    //     }
-    // }
 };
 
 function majDataInst(data) 
 {
+    console.log("Mise à jour des données");
     for (let item in data)
     {
         $('#dv-' + item + ' [name="timeS"]').text(data[item][1]);
@@ -73,108 +55,105 @@ function alert_button() {
     socket.send('alert_button', 'Message from client!!')
 }
 
-// <rect
-//   style="fill:#000000;fill-opacity:0.109804;stroke:#000069;stroke-width:1.545;stroke-linejoin:round;stroke-miterlimit:4.9;stroke-dasharray:none;stroke-opacity:0.535484"
-//   id="rect25740"
-//   width="50.270832"
-//   height="42.333332"
-//   x="37.041668"
-//   y="171.97917" />
-// <rect
-//   style="mix-blend-mode:normal;fill:#000000;fill-opacity:0.112903;stroke:#000069;stroke-width:1.54499;stroke-linejoin:round;stroke-miterlimit:4.9;stroke-dasharray:none;stroke-opacity:0.535484"
-//   id="rect3542"
-//   width="44.979168"
-//   height="15.874994"
-//   x="39.687504"
-//   y="174.625" />
-// <text
-//   xml:space="preserve"
-//   style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
-//   x="43.215515"
-//   y="186.08981"
-//   id="temp"><tspan
-//     sodipodi:role="line"
-//     id="tspan4490"
-//     style="stroke-width:0.264583"
-//     x="43.215515"
-//     y="186.08981">20.5</tspan></text>
-// <text
-//   xml:space="preserve"
-//   style="font-style:normal;font-weight:normal;font-size:5.65103px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.211913"
-//   x="69.608765"
-//   y="182.05086"
-//   id="text10136"><tspan
-//     sodipodi:role="line"
-//     id="tspan10134"
-//     style="font-size:5.65103px;stroke-width:0.211913"
-//     x="69.608765"
-//     y="182.05086">°C</tspan></text>
-// <rect
-//   style="fill:#000000;fill-opacity:0.109804;stroke:#000069;stroke-width:1.545;stroke-linejoin:round;stroke-miterlimit:4.9;stroke-dasharray:none;stroke-opacity:0.535484"
-//   id="rect3542-3"
-//   width="44.979172"
-//   height="15.874994"
-//   x="39.6875"
-//   y="193.14583" />
-// <text
-//   xml:space="preserve"
-//   style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
-//   x="43.215511"
-//   y="204.61064"
-//   id="hygro"><tspan
-//     sodipodi:role="line"
-//     id="tspan4490-6"
-//     style="stroke-width:0.264583"
-//     x="43.215511"
-//     y="204.61064">78.9</tspan></text>
-// <text
-//   xml:space="preserve"
-//   style="font-style:normal;font-weight:normal;font-size:5.65103px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.211913"
-//   x="68.550423"
-//   y="200.57169"
-//   id="text10136-5"><tspan
-//     sodipodi:role="line"
-//     id="tspan10134-4"
-//     style="font-size:5.65103px;stroke-width:0.211913"
-//     x="68.550423"
-//     y="200.57169">%HR</tspan></text>
-// </g>
-
 position_thermometres = [
-    {pos_x : 37, pos_y : 171},   // 0
-    {pos_x : 50, pos_y : 42},   // 1
-    {pos_x : 50, pos_y : 42},   // 2
-    {pos_x : 37, pos_y : 171},   // 3
-    {pos_x : 50, pos_y : 42},   // 4
-    {pos_x : 50, pos_y : 42},   // 5
-    {pos_x : 50, pos_y : 42},   // 6
-    {pos_x : 50, pos_y : 42},   // 7
-    {pos_x : 50, pos_y : 42}    // 8
+    {pos_x :  420, pos_y : 700},   // 1 : chambre Maxine
+    {pos_x :  870, pos_y : 870},   // 2 : véranda
+    {pos_x : 1100, pos_y : 230},   // 3 : garage
+    {pos_x :   30, pos_y : 740},   // 4 : Martin
+    {pos_x :   50, pos_y : 300},   // 5 : Salle de bain
+    {pos_x :   50, pos_y : 170},   // 6 : chambre parents
+    {pos_x : 1150, pos_y : 440},   // 7 : salle à manger
+    {pos_x :  570, pos_y : 530}    // 8 : mobile
     ];
-parametres_thermometres = {
-    largeur : 50,
-    hauteur : 42
-};
-valeur = 10;
+
+style_rect = "fill:none;fill-opacity:0;stroke:#000069;stroke-width:1.545;stroke-linejoin:round;stroke-miterlimit:4.9;stroke-dasharray:none;";
 
 var_svg = document.getElementById("svgMaison");
 
-// thermometre = document.createElement("g");  //thermomètre
-// rectangle_cadre = document.createElement("rect");
-// rectangle_cadre.setAttribute("x", position_thermometres[i].pos_x.toString());
-// rectangle_cadre.setAttribute("y", position_thermometres[i].pos_y.toString());
-// rectangle_temp = document.createElement("rect");
-// rectangle_hydro = document.createElement("rect");
-// text_temp = document.createElement("rect");
-// text_hydro = document.createElement("rect");
+/* <g id="svg_15">
+<rect fill="none" fill-opacity="0" height="47" id="svg_8" stroke="#000069" stroke-linejoin="round" stroke-miterlimit="4.9" stroke-width="1.545" width="50" x="766" y="177"/>
+<rect fill="none" fill-opacity="0" height="15" id="svg_9" stroke="#000069" stroke-linejoin="round" stroke-miterlimit="4.9" stroke-width="1.545" width="44" x="769" y="181"/>
+<rect fill="none" fill-opacity="0" height="15" id="svg_10" stroke="#000069" stroke-linejoin="round" stroke-miterlimit="4.9" stroke-width="1.545" width="44" x="769" y="199"/>
+</g> */
 
-// thermometre.appendChild(rectangle_cadre);
-// thermometre.appendChild(rectangle_temp);
-// thermometre.appendChild(rectangle_hydro);
-// thermometre.appendChild(rectangle_temp);
-// thermometre.appendChild(rectangle_hydro);
+var xmlns = "http://www.w3.org/2000/svg";
 
-// for(i=0; i<8; i++)
-// {
-//     var_svg.appendChild(thermometre);
-// }
+for(i=0; i<8; i++)
+{
+    thermometre = document.createElementNS(xmlns, "g");  //thermomètre
+    thermometre.setAttribute("class", "layer");
+    // thermometre.setAttribute("width", "250");
+    // thermometre.setAttribute("height", "142");
+    rectangle_cadre = document.createElementNS(xmlns, "rect");
+    //  width="50" height="42" x="37" y="171"   -- cadre tour
+    rectangle_cadre.setAttribute("x", "0");
+    rectangle_cadre.setAttribute("y", "0");
+    rectangle_cadre.setAttribute("width", "50");
+    rectangle_cadre.setAttribute("height", "47");
+    rectangle_cadre.setAttribute("style", style_rect);
+    
+    rectangle_temp = document.createElementNS(xmlns, "rect");
+    //  width="44" height="15" x="39" y="174.625"
+    rectangle_temp.setAttribute("width", "44");
+    rectangle_temp.setAttribute("height", "15");
+    rectangle_temp.setAttribute("x", "3");
+    rectangle_temp.setAttribute("y", "3");
+    rectangle_temp.setAttribute("style", style_rect);
+    
+    rectangle_hydro = document.createElementNS(xmlns, "rect");
+    //  width="44" height="15" x="39.6875" y="193"
+    rectangle_hydro.setAttribute("width", "44");
+    rectangle_hydro.setAttribute("height", "15");
+    rectangle_hydro.setAttribute("x", "3");
+    rectangle_hydro.setAttribute("y", "21");
+    rectangle_hydro.setAttribute("style", style_rect);
+    
+    text_temp = document.createElementNS(xmlns, "text");
+    //  style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0"
+    //                x="43" y="186"
+    text_temp.setAttribute("x", "5");
+    text_temp.setAttribute("y", "14");
+    text_temp.setAttribute("name", "temp");
+    text_temp.setAttribute("style", "font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0");
+    text_temp.textContent = "20.0";
+    
+    text_temp_exp = document.createElementNS(xmlns, "text");
+    //  style="font-style:normal;font-weight:normal;font-size:5px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0"
+    //  x="69" y="182" id="text10136-2">
+    text_temp_exp.setAttribute("x", "33");
+    text_temp_exp.setAttribute("y", "10");
+    text_temp_exp.setAttribute("style", "font-style:normal;font-weight:normal;font-size:5px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0");
+    text_temp_exp.textContent = "°C";
+    
+    text_hydro = document.createElementNS(xmlns, "text");
+    //  style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0"
+    //                x="43" y="204" 
+    text_hydro.setAttribute("x", "5");
+    text_hydro.setAttribute("y", "32");
+    text_hydro.setAttribute("name", "hygro");
+    text_hydro.setAttribute("style", "font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0");
+    text_hydro.textContent = "70,0";
+    
+    text_hydro_exp = document.createElementNS(xmlns, "text");
+    // style="font-style:normal;font-weight:normal;font-size:5px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0"
+    // x="68" y="200" id="text10136-5-6">
+    text_hydro_exp.setAttribute("x", "33");
+    text_hydro_exp.setAttribute("y", "28");
+    text_hydro_exp.setAttribute("style", "font-style:normal;font-weight:normal;font-size:5px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0");
+    text_hydro_exp.textContent = "%HR";
+    
+    
+    thermometre.appendChild(rectangle_cadre);
+    thermometre.appendChild(rectangle_temp);
+    thermometre.appendChild(rectangle_hydro);
+    thermometre.appendChild(text_hydro);
+    thermometre.appendChild(text_hydro_exp);
+    thermometre.appendChild(text_temp);
+    thermometre.appendChild(text_temp_exp);
+
+    position = "translate(" + position_thermometres[i].pos_x + "," + position_thermometres[i].pos_y + ") scale(2)";
+    thermometre.setAttribute("transform", position);
+    thermometre.setAttribute("id", "dv-"+ (i+1));
+    
+    var_svg.appendChild(thermometre);
+}

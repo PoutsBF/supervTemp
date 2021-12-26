@@ -34,64 +34,42 @@
 						Température Pout's Fam House !
 					</h1>
 				</div>
-				<div class="row">
-					<div class="col-md-12">
-						<button onclick="json_button()">Json Message</button>
-						<button onclick="alert_button()">Alert Message</button>
-					</div>
-				</div>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-md-12">
-				<nav class="nav nav-pills" id="myTab">
-					<a class="nav-item nav-list" id="plan-tab" data-toggle="tab" href="#plan">Plan maison</a>
-					<a class="nav-item nav-list active" 
-						id="thermo-tab" 
-						data-toggle="tab" 
-						href="#thermo"
-						aria-expanded="true">
-						thermomètres</a>
-					<a class="nav-item nav-list" id="tableau-tab" data-toggle="tab" href="#tableau">Tableau de
-						données</a>
-				</nav>
+				<ul class="nav nav-tabs">
+					<li class="nav-item">
+						<a class="nav-link active" href="#plan" data-toggle="tab">Plan maison</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#thermo" data-toggle="tab">thermomètres</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#tableau" data-toggle="tab">Tableau de
+							données</a>
+					</li>
+				</ul>
 			</div>
 		</div>
 		<div class="tab-content" id="ex1-content">
-			<div class="row tab-pane fade" id="plan">
+			<div class="row tab-pane fade active show" id="plan">
 				<div class="col-md-12">
-					<svg id="svgMaison">
-						<rect
-							style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-opacity:1;image-rendering:auto"
-							id="rect35" width="164px" height="100px" x="0px" y="0px" />
-						<rect style="fill:none;stroke:#000000;stroke-width:1px;stroke-opacity:1" id="rect2542"
-							width="31px" height="29px" x="0px" y="34px" />
-						<path
-							style="fill:none;stroke:#000000;stroke-width:1pxpx;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-							d="M 0,34 H 31 v 7 H 74 V 0 H 0 V 34" id="path2679" />
-						<path
-							style="fill:none;stroke:#000000;stroke-width:1pxpx;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-							d="M 31,55 H 45 V 100 H 0 V 63 H 31 v -7" id="path2681" />
-						<path
-							style="fill:none;stroke:#000000;stroke-width:1pxpx;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-							d="M 74,0 H 90 V 24 H 74 Z" id="path2683" />
-						<path
-							style="fill:none;stroke:#000000;stroke-width:1pxpx;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-							d="M 87,24 V 42 H 74 V 24 Z" id="path2685" />
-						<path
-							style="fill:none;stroke:#000000;stroke-width:1pxpx;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-							d="M 90,55 V 100 H 45 V 55 Z" id="path2687" />
-						<path
-							style="fill:none;stroke:#000000;stroke-width:1pxpx;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-							d="M 103,0 V 55 H 90 V 100 H 164 V 55 H 137 V 0 Z" id="path2689" />
-						<rect style="fill:none;stroke:#000000;stroke-width:1px;stroke-opacity:1" id="rect3099"
-							width="50" height="23" x="108" y="100" />
-					</svg>
-					<embed src="{{ url_for('static', filename='svg/maison.svg') }}" type="image/svg+xml"
-						id="svgMaison" />
+					<svg id="svgMaison" width="1360" height="1070" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+							<g class="layer">
+							 <title>Layer 1</title>
+							 <path d="m0,0l1262,0l0,850l-1260,0l0,-852" fill="#fff" id="maison_tour" opacity="undefined" stroke="#000"/>
+							 <path d="m0,0l450,0l0,340l-250,0l0,-70l-200,0.5l0,-270.5z" fill="#fff" id="maison_chambre1" opacity="undefined" stroke="#000"/>
+							 <rect fill="#fff" height="220" id="maison_sdb" stroke="#000" width="200" x="0" y="270"/>
+							 <path d="m1,490l199,0l0,-60l70,0l1,420l-270,0l0,-360z" fill="#fff" id="maison_chambre3" stroke="#000"/>
+							 <path d="m200,340l125,0l125,0l60,0l0,-160l20,0l0,-180l140,0l0,430l-470,0l0,-90z" fill="none" id="maison_couloir" opacity="undefined" stroke="#000000" stroke-width="1pxpx"/>
+							 <rect fill="#fff" height="420" id="maison_chambre2" stroke="#000" width="270" x="270" y="430"/>
+							 <path d="m540,430l0,420l720,0l0,-420l-270,0l0,-430l-320,0l0,430l-130,-0z" fill="#fff" id="maison_sam" stroke="#000"/>
+							</g>
+						</svg>
 				</div>
 			</div>
-			<div class="row tab-pane fade active show" id="thermo" aria-expanded="true">
+			<div class="row tab-pane fade" id="thermo" aria-expanded="true">
 				<div class="col-md-12">
 					<div class="card-deck">
 						{%- for pos in range(0, 8) %}
@@ -171,7 +149,53 @@
 				</div>
 			</div>
 		</div>
+<!-- Footer -->
+<footer class="page-footer fixed-bottom font-small blue pt-4">
+	<!-- Footer Links -->
+	<div class="container-fluid text-center text-md-left">
+	  <!-- Grid row -->
+	  <div class="row">
+		<!-- Grid column -->
+		<div class="col-md-6 mt-md-0 mt-3">
+		  <!-- Content -->
+		  <h5 class="text-uppercase">Stéphane Lepoutère</h5>
+		  <p>Affichage des données des thermomètres.</p>
+		</div>
+		<!-- Grid column -->
+		<hr class="clearfix w-100 d-md-none pb-3">
+		<!-- Grid column -->
+		<div class="col-md-3 mb-md-0 mb-3">
+		  <button type="button" class="btn btn-info" onclick="json_button()">Mise à jour</button>
+		</div>
+		<!-- Grid column -->
 
+		<!-- Grid column -->
+		<div class="col-md-3 mb-md-0 mb-3">
+  
+		  <!-- Links -->
+		  <h5 class="text-uppercase">Crédits</h5>
+		  <ul class="list-unstyled">
+			<li>
+			  <a href="#!">Link 1</a>
+			</li>
+		  </ul>
+  
+		</div>
+		<!-- Grid column -->
+  
+	  </div>
+	  <!-- Grid row -->
+  
+	</div>
+	<!-- Footer Links -->
+  
+	<!-- Copyright -->
+	<div class="footer-copyright text-center py-3">(c) 2021 : Stéphane Lepoutère
+	</div>
+	<!-- Copyright -->
+  
+  </footer>
+  <!-- Footer -->
 	</div>
 
 	<!-- Plugin JavaScript -->
