@@ -1,4 +1,6 @@
-from os import device_encoding
+# -*- coding: utf-8 -*-
+#! python3
+
 from flask_sqlalchemy import SQLAlchemy
 # https://flask-sqlalchemy.palletsprojects.com/en/2.x/models/
 
@@ -111,8 +113,6 @@ def ajout_data(**kwargs):
     db.session.add(nvData)
     db.session.commit()
 
-# init_models()
-
 # https://docs.sqlalchemy.org/en/14/orm/query.html
 # https://www.it-swarm-fr.com/fr/python/flask-sqlalchemy-ou-sqlalchemy/1071549488/
 # https://www.it-swarm-fr.com/fr/python/flask-sqlalchemy-verifie-si-une-ligne-existe-dans-la-table/1055082755/
@@ -144,4 +144,3 @@ INNER JOIN (capteurs INNER JOIN data_environnement ON capteurs.id = data_environ
     flask shell
 
 """
-# req1 = db.session.query(data_environnement.idCapteur, func.max(data_environnement.timeStamp), capteurs.location).group_by(data_environnement.idCapteur).where(data_environnement.idCapteur==capteurs.id).all()
